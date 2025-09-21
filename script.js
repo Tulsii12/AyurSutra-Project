@@ -1,13 +1,32 @@
 const products = [
+    { id: 3, name: "Triphala Churna", category: "Supplements", price: 280, description: "Traditional herbal powder for digestive health", benefits: ["Digestive support", "Detoxification", "Immunity boost"], image: "assets/triphla.jpg" },
+    { id: 7, name: "Shatavari Powder", category: "Supplements", price: 420, description: "Women's health tonic for hormonal balance", benefits: ["Hormonal balance", "Reproductive health", "Immunity support"], image: "assets/shatavari.jpg" },
+
+    // Additional Oils
     { id: 1, name: "Brahmi Oil", category: "Herbal Oils", price: 450, description: "Pure Brahmi oil for mental clarity and hair health", benefits: ["Improves memory", "Reduces stress", "Nourishes hair"], image: "assets/bhrami oil.jpg" },
-    { id: 2, name: "Sesame Oil (Til Oil)", category: "Herbal Oils", price: 320, description: "Cold-pressed sesame oil for Abhyanga massage", benefits: ["Deep tissue nourishment", "Improves circulation", "Anti-aging properties"], image: "assets/sesame.jpg" },
-    { id: 3, name: "Triphala Churna", category: "Medicines", price: 280, description: "Traditional herbal powder for digestive health", benefits: ["Digestive support", "Detoxification", "Immunity boost"], image: "assets/triphla.jpg" },
-    { id: 4, name: "Ashwagandha Capsules", category: "Supplements", price: 650, description: "Premium Ashwagandha extract for stress relief", benefits: ["Stress reduction", "Energy boost", "Better sleep"], image: "assets/ashwagandha.jpg" },
-    { id: 5, name: "Copper Water Bottle", category: "Bottles & Containers", price: 890, description: "Pure copper bottle for storing Ayurvedic water", benefits: ["Antimicrobial properties", "Improves digestion", "Boosts immunity"], image: "assets/Copper Water Bottle.jpg" },
     { id: 6, name: "Neem Oil", category: "Herbal Oils", price: 380, description: "Pure neem oil for skin conditions and healing", benefits: ["Antibacterial", "Skin healing", "Natural antiseptic"], image: "assets/neem.jpg" },
-    { id: 7, name: "Shatavari Powder", category: "Medicines", price: 420, description: "Women's health tonic for hormonal balance", benefits: ["Hormonal balance", "Reproductive health", "Immunity support"], image: "assets/shatavari.jpg" },
-    { id: 8, name: "Glass Storage Jars Set", category: "Bottles & Containers", price: 560, description: "Set of 3 glass jars for storing herbs and medicines", benefits: ["Airtight storage", "Chemical-free", "Easy to clean"], image: "assets/Glass Storage Jars Set.jpg" }
+    { id: 2, name: "Sesame Oil (Til Oil)", category: "Herbal Oils", price: 320, description: "Cold-pressed sesame oil for Abhyanga massage", benefits: ["Deep tissue nourishment", "Improves circulation", "Anti-aging properties"], image: "assets/sesame.jpg" },
+    { id: 9, name: "Dhanwantharam Thailam", category: "Herbal Oils", price: 480, description: "Herbal oil used in Vata disorders and postnatal care", benefits: ["Relieves muscle pain", "Strengthens nerves", "Reduces inflammation"], image: "assets/dhanwantharam.jpg" },
+    { id: 10, name: "Kottamchukkadi Oil", category: "Herbal Oils", price: 400, description: "Oil used in arthritis and neuromuscular pain treatments", benefits: ["Reduces stiffness", "Improves flexibility", "Relieves pain"], image: "assets/kottamchukkadi.jpg" },
+    { id: 11, name: "Nirgundi Oil", category: "Herbal Oils", price: 360, description: "Anti-inflammatory oil used for joint pain and swelling", benefits: ["Pain relief", "Anti-swelling", "Muscle relaxation"], image: "assets/nirgundi.jpg" },
+    { id: 12, name: "Bala Thailam", category: "Herbal Oils", price: 390, description: "Tonic oil used in nervous system disorders", benefits: ["Strengthens nerves", "Reduces tremors", "Supports Vata balance"], image: "assets/bala.jpg" },
+    { id: 13, name: "Kumkumadi Tailam", category: "Herbal Oils", price: 650, description: "Luxury facial oil for skin brightening and radiance", benefits: ["Brightens skin", "Reduces dark spots", "Anti-aging"], image: "assets/kumkumadi.jpg" },
+
+    // Ayurvedic Tablets
+    { id: 4, name: "Ashwagandha Capsules", category: "Medicines", price: 650, description: "Premium Ashwagandha extract for stress relief", benefits: ["Stress reduction", "Energy boost", "Better sleep"], image: "assets/ashwagandha.jpg" },
+    { id: 14, name: "Triphala Guggul", category: "Medicines", price: 320, description: "Herbal tablet used for detox and weight management", benefits: ["Improves digestion", "Aids weight loss", "Removes toxins"], image: "assets/triphla guggal.jpg" },
+    { id: 15, name: "Yograj Guggul", category: "Medicines", price: 290, description: "Ayurvedic tablet for joint and muscle health", benefits: ["Relieves arthritis", "Reduces inflammation", "Supports joint function"], image: "assets/yograj.jpg" },
+    { id: 16, name: "Giloy Tablets", category: "Medicines", price: 200, description: "Immunity boosting herb in tablet form", benefits: ["Boosts immunity", "Fights infection", "Reduces fever"], image: "assets/giloy.jpg" },
+    { id: 17, name: "Chitrakadi Vati", category: "Medicines", price: 280, description: "Digestive herbal tablet for gas and indigestion", benefits: ["Improves metabolism", "Relieves bloating", "Stimulates appetite"], image: "assets/chitrakadi.jpg" },
+    { id: 18, name: "Haritaki Tablets", category: "Medicines", price: 250, description: "Mild laxative and detoxifier", benefits: ["Relieves constipation", "Supports gut health", "Detoxifies colon"], image: "assets/haritki.jpg" },
+
+    // Tools
+    { id: 5, name: "Copper Water Bottle", category: "Bottles & Containers", price: 890, description: "Pure copper bottle for storing Ayurvedic water", benefits: ["Antimicrobial properties", "Improves digestion", "Boosts immunity"], image: "assets/Copper Water Bottle.jpg" },
+    { id: 8, name: "Glass Storage Jars Set", category: "Bottles & Containers", price: 560, description: "Set of 3 glass jars for storing herbs and medicines", benefits: ["Airtight storage", "Chemical-free", "Easy to clean"], image: "assets/Glass Storage Jars Set.jpg" },
+    { id: 19, name: "Basti Enema Kit", category: "Bottles & Containers", price: 1500, description: "Complete kit for Ayurvedic Basti therapy", benefits: ["Colon detox", "Balances Vata", "Improves elimination"], image: "assets/enema kit.jpg" },
+    { id: 20, name: "Shirodhara Pot Set", category: "Bottles & Containers", price: 2500, description: "Stainless steel or copper pot set for Shirodhara treatment", benefits: ["Promotes calmness", "Relieves anxiety", "Improves focus"], image: "assets/shirodhara pot.jpg" }
 ];
+
 
 const productList = document.getElementById('product-list');
 const cartItemCount = document.getElementById('cart-item-count');
