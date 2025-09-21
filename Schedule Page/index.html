@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panchakarma Center - Schedule Appointment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <span class="logo-icon">P</span>
+      <div class="logo-text">
+        <h2>Panchakarma Center</h2>
+        <p>Ayurvedic Healing</p>
+      </div>
+    </div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About Us</a>
+      <a href="#">Shop</a>
+      <a href="#" class="active">Schedule</a>
+      <a href="#">Records</a>
+      <a href="#">Login</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Schedule Appointment</h1>
+    <p>Book your consultation or treatment session</p>
+  </section>
+
+  <!-- Select Treatment -->
+  <section class="card-section">
+    <h2>Select Panchakarma Treatment</h2>
+    <div class="treatments">
+      <div class="card" onclick="selectTreatment(this)">
+        <img src="images/initialConsult.JPG" alt="Consultation">
+        <h3>Initial Consultation <span>₹500</span></h3>
+        <p>Comprehensive health assessment and treatment planning</p>
+        <small>Duration: 60 minutes</small>
+      </div>
+      <div class="card" onclick="selectTreatment(this)">
+        <img src="images/Abhyanga.jpg" alt="Treatment 1">
+        <h3>Abhyanga (Full Body Massage) <span>₹2000</span></h3>
+        <p>Traditional full body oil massage</p>
+        <ul class="benefits">
+          <li>Improves Circulation</li>
+          <li>Relaxes Body</li>
+          <li>Nourishes Skin</li>
+        </ul>
+        <small>Duration: 60 minutes</small>
+      </div>
+
+      <div class="card" onclick="selectTreatment(this)">
+        <img src="images/Shirodhara.JPG" alt="Treatment 2">
+        <h3>Shirodhara <span>₹3500</span></h3>
+        <p>Continuous oil pouring on forehead</p>
+        <ul class="benefits">
+          <li>Reduces Stress</li>
+          <li>Helps with Insomnia</li>
+          <li>Reduces Anxiety</li>
+        </ul>
+        <small>Duration: 60 minutes</small>
+      </div>
+
+      <div class="card" onclick="selectTreatment(this)">
+        <img src="images/Shirovasti.JPG" alt="Treatment 3">
+        <h3>Shirovasti <span>₹3000</span></h3>
+        <p>Retaining warm oil on head using cap-like structure.</p>
+        <ul class="benefits">
+          <li>Useful in Headaches</li>
+          <li>Hair/Scalp Issues</li>
+          <li>Neurological Problems</li>
+        </ul>
+        <small>Duration: 45 minutes</small>
+      </div>
+
+      <div class="card" onclick="selectTreatment(this)">
+        <img src="images/Women.JPG" alt="Treatment 4">
+        <h3>Women's Health Treatment <span>₹20000+</span></h3>
+        <p>Specialized treatments for Women</p>
+        <ul class="benefits">
+          <li>Menstrual Health</li>
+          <li>Hormonal Imbalance</li>
+          <li>Fertility Support</li>
+        </ul>
+        <small>Duration: 7-21 days</small>
+      </div>
+
+      <div class="card" onclick="selectTreatment(this)">
+        <img src="images/Pizhichil.WEBP" alt="Treatment 5">
+        <h3>Pizhichil <span>₹4500</span></h3>
+        <p>Pouring warm medicated oil on the whole body with massage.</p>
+        <ul class="benefits">
+          <li>Good for Arthritis</li>
+          <li>Helps with Paralysis</li>
+          <li>Rejuvenation</li>
+        </ul>
+        <small>Duration: 75 minutes</small>
+      </div>
+
+      <div class="card" onclick="selectTreatment(this)">
+        <img src="images/Navarakizhi.WEBP" alt="Treatment 6">
+        <h3>Navarakizhi <span>₹4000</span></h3>
+        <p>Massage with warm rice boluses cooked in herbal decoction & milk.</p>
+        <ul class="benefits">
+          <li>Strengthens Muscles</li>
+          <li>Relieves Weakness</li>
+          <li>Nourishes Body</li>
+        </ul>
+        <small>Duration: 60 minutes</small>
+      </div>
+
+      <div class="card" onclick="selectTreatment(this)">
+        <img src="images/PatraPindaSweda.WEBP" alt="Treatment 7">
+        <h3>Patra Pinda Sweda <span>₹3500</span></h3>
+        <p>Massage with herbal boluses.</p>
+        <ul class="benefits">
+          <li>Relieves Joint Pain</li>
+          <li>Reduces Stiffness</li>
+          <li>Reduces Swelling</li>
+        </ul>
+        <small>Duration: 60 minutes</small>
+      </div>
+
+      <div class="card" onclick="selectTreatment(this)">
+        <img src="images/Udwartana.JPG" alt="Treatment 8">
+        <h3>Udwartana <span>₹2500</span></h3>
+        <p>Dry powder massage.</p>
+        <ul class="benefits">
+          <li>Reduces Obesity</li>
+          <li>Helps with Cellulite</li>
+          <li>Improves Skin Tone</li>
+        </ul>
+        <small>Duration: 45 minutes</small>
+      </div>
+
+      <div class="card" onclick="selectTreatment(this)">
+        <img src="images/KatiBasti.JPG" alt="Treatment 9">
+        <h3>Kati Basti <span>₹2000</span></h3>
+        <p>Retaining warm medicated oil on lower back.</p>
+        <ul class="benefits">
+          <li>Effective for Back Pain</li>
+          <li>Helps with Sciatica</li>
+        </ul>
+        <small>Duration: 40 minutes</small>
+      </div>
+
+      <div class="card" onclick="selectTreatment(this)">
+        <img src="images/JanuBasti.PNG" alt="Treatment 10">
+        <h3>Janu Basti <span>₹2000</span></h3>
+        <p>Retaining warm medicated oil on knees.</p>
+        <ul class="benefits">
+          <li>Relieves Knee Pain</li>
+          <li>Helps with Arthritis</li>
+          <li>Reduces Stiffness</li>
+        </ul>
+        <small>Duration: 40 minutes</small>
+      </div>
+
+      <div class="card" onclick="selectTreatment(this)">
+        <img src="images/HridayaBasti.JPG" alt="Treatment 11">
+        <h3>Hridaya Basti <span>₹2500</span></h3>
+        <p>Warm oil over heart region.</p>
+        <ul class="benefits">
+          <li>Supports Heart Health</li>
+          <li>Reduces Stress</li>
+          <li>Reduces Palpitations</li>
+        </ul>
+        <small>Duration: 40 minutes</small>
+      </div>
+
+      <div class="card" onclick="selectTreatment(this)">
+        <img src="images/NetraTarpana.JPG" alt="Treatment 12">
+        <h3>Netra Tarpana <span>₹1800</span></h3>
+        <p>Eye rejuvenation with medicated ghee.</p>
+        <ul class="benefits">
+          <li>Improves Vision</li>
+          <li>Relieves Strain</li>
+          <li>Reduces Dryness</li>
+        </ul>
+        <small>Duration: 30 minutes</small>
+      </div>
+
+      <div class="card" onclick="selectTreatment(this)">
+        <img src="images/KarnaPurana.JPG" alt="Treatment 13">
+        <h3>Karna Purana <span>₹1500</span></h3>
+        <p>Ear therapy with medicated oils.</p>
+        <ul class="benefits">
+          <li>Helps with Ear Pain</li>
+          <li>Tinnitus</li>
+          <li>Addresses Hearing Issues</li>
+        </ul>
+        <small>Duration: 30 minutes</small>
+      </div>
+
+      <div class="card" onclick="selectTreatment(this)">
+        <img src="images/Gandusha.JPG" alt="Treatment 14">
+        <h3>Gandusha/Kavala <span>₹1000</span></h3>
+        <p>Oil pulling therapy .</p>
+        <ul class="benefits">
+          <li>Strengthening Gums</li>
+          <li>Improves oral health</li>
+        </ul>
+        <small>Duration: 20 minutes</small>
+      </div>
+
+      <div class="card" onclick="selectTreatment(this)">
+        <img src="images/Lepam.JPG" alt="Treatment 15">
+        <h3>Lepam <span>₹1800</span></h3>
+        <p>Application of medicated herbal pastes.</p>
+        <ul class="benefits">
+          <li>Treats Skin Diseases</li>
+          <li>Reduces Inflammation</li>
+          <li>Helps with Pigmentation</li>
+        </ul>
+        <small>Duration: 45 minutes</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- Date & Time -->
+  <section class="card-section">
+    <h2>Select Date & Time</h2>
+    <label>Preferred Date</label>
+    <input type="date" />
+    <label>Preferred Time</label>
+    <div class="time-slots">
+      <button>09:00 AM</button>
+      <button>09:30 AM</button>
+      <button>10:00 AM</button>
+      <button>10:30 AM</button>
+      <button>11:00 AM</button>
+      <button>11:30 AM</button>
+      <button>12:00 PM</button>
+      <button>12:30 PM</button>
+      <button>02:00 PM</button>
+      <button>02:30 PM</button>
+      <button>03:00 PM</button>
+      <button>03:30 PM</button>
+      <button>04:00 PM</button>
+      <button>04:30 PM</button>
+      <button>05:00 PM</button>
+      <button>05:30 PM</button>
+      <button>06:00 PM</button>
+      <button>06:30 PM</button>
+    </div>
+  </section>
+
+  <!-- Patient Information -->
+  <section class="card-section">
+    <h2>Patient Information</h2>
+    <form>
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" required>
+      </div>
+      <div class="form-group">
+        <label>Phone Number *</label>
+        <input type="tel" required>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email">
+      </div>
+      <div class="form-group">
+        <label>Gender *</label>
+        <select required>
+          <option>Select gender</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group full-width">
+        <label>Health Condition / Reason for Visit</label>
+        <textarea rows="4"></textarea>
+      </div>
+      <button type="submit" class="btn-primary">Book Appointment</button>
+      <br>
+      <p class="note">* We will contact you within 24 hours to confirm your appointment</p>
+    </form>
+  </section>
+
+  <!-- Help Section -->
+  <section class="help">
+    <h3>Need Help?</h3>
+    <p>If you have any questions or need assistance with booking, please contact us:</p>
+    <p>📞 +91 98765 43210 &nbsp; | &nbsp; ✉️ appointments@panchakarma-center.com</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <p>📍 123 Wellness Street, Ayurveda City</p>
+      <p>📞 +91 9876543210</p>
+      <p>✉️ info@panchakarma-center.com</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Treatments</a></li>
+        <li><a href="#">Consultation</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Appointment</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Operating Hours</h4>
+      <p>Monday - Friday: 9:00 AM - 7:00 PM</p>
+      <p>Saturday: 9:00 AM - 5:00 PM</p>
+      <p>Sunday: 10:00 AM - 4:00 PM</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
