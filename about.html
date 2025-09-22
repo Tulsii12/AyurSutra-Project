@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - AyurSutra</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --brand: #0a7e3d; }
+    body { font-family: 'Inter', sans-serif; color: #2d3748; background-color: #f7fafc; }
+    .brand-gradient { background: linear-gradient(145deg, var(--brand) 0%, #0a7e3d 100%); }
+    .brand-text { color: var(--brand); }
+    .brand-border { border-color: var(--brand); }
+    .brand-btn { background: var(--brand); color: #fff; }
+    .brand-btn:hover { filter: brightness(0.95); }
+    .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-[var(--brand)] text-white shadow-md" style="--brand:#0a7e3d">
+    <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row md:justify-between items-center gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center font-bold">A</div>
+        <div>
+          <h1 class="text-xl font-bold">AyurSutra</h1>
+          <p class="text-sm text-white/80">Panchakarma Center</p>
+        </div>
+      </div>
+      <nav>
+        <ul class="flex items-center gap-6 text-sm">
+         
+          <li><a href="schedule.html" class="hover:underline">Schedule</a></li>
+          <li><a href="profile.html" class="hover:underline">Profile</a></li>
+          <li><a href="about.html" class="underline font-semibold">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="brand-gradient text-white py-16">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-3">Rooted in Tradition, Guided by Science</h2>
+      <p class="text-lg md:text-xl opacity-90 max-w-3xl mx-auto">At AyurSutra, we blend classical Ayurveda with modern care to deliver personalized Panchakarma therapies and track measurable progress for every patient.</p>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="card p-6">
+      <h3 class="text-2xl font-bold mb-3 brand-text">Our Mission</h3>
+      <p>To make authentic, effective Ayurvedic care accessible with evidence-informed practices, compassionate clinicians, and technology that empowers patients to improve their health outcomes.</p>
+    </div>
+    <div class="card p-6">
+      <h3 class="text-2xl font-bold mb-3 brand-text">Our Vision</h3>
+      <p>To be the most trusted Panchakarma care platform, where tradition meets data-driven insight, and every patient journey is supported, measurable, and meaningful.</p>
+    </div>
+  </section>
+
+  <!-- What We Do -->
+  <section class="container mx-auto px-6 pb-4">
+    <div class="card p-8">
+      <h3 class="text-2xl font-bold mb-6 brand-text">What We Do</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-4 rounded-lg border brand-border/30">
+          <div class="text-3xl mb-3 brand-text"><i class="fas fa-spa"></i></div>
+          <h4 class="font-semibold mb-2">Personalized Panchakarma</h4>
+          <p class="text-sm text-gray-600">Evidence-aligned therapy plans tailored to your constitution and condition.</p>
+        </div>
+        <div class="p-4 rounded-lg border brand-border/30">
+          <div class="text-3xl mb-3 brand-text"><i class="fas fa-heartbeat"></i></div>
+          <h4 class="font-semibold mb-2">Vitals & Progress Tracking</h4>
+          <p class="text-sm text-gray-600">Track vitals, symptoms, adherence, and outcomes with intuitive dashboards.</p>
+        </div>
+        <div class="p-4 rounded-lg border brand-border/30">
+          <div class="text-3xl mb-3 brand-text"><i class="fas fa-user-md"></i></div>
+          <h4 class="font-semibold mb-2">Expert Ayurvedic Team</h4>
+          <p class="text-sm text-gray-600">Experienced Vaidyas and therapists delivering safe, compassionate care.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="container mx-auto px-6 py-12">
+    <h3 class="text-2xl font-bold mb-6 brand-text text-center">Our Core Values</h3>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div class="card p-6 text-center">
+        <h4 class="font-semibold">Authenticity</h4>
+        <p class="text-sm text-gray-600 mt-2">Rooted in classical Ayurveda texts and practices.</p>
+      </div>
+      <div class="card p-6 text-center">
+        <h4 class="font-semibold">Compassion</h4>
+        <p class="text-sm text-gray-600 mt-2">Care that listens and adapts to your needs.</p>
+      </div>
+      <div class="card p-6 text-center">
+        <h4 class="font-semibold">Integrity</h4>
+        <p class="text-sm text-gray-600 mt-2">Transparent processes and responsible care.</p>
+      </div>
+      <div class="card p-6 text-center">
+        <h4 class="font-semibold">Impact</h4>
+        <p class="text-sm text-gray-600 mt-2">Measurable outcomes and continuous improvement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Highlights -->
+  <section class="container mx-auto px-6 pb-12">
+    <div class="card p-8">
+      <h3 class="text-2xl font-bold mb-6 brand-text">Meet Our Team</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 border rounded-lg text-center">
+          <div class="w-20 h-20 rounded-full mx-auto mb-3 bg-[var(--brand)]/10 flex items-center justify-center text-2xl brand-text">AS</div>
+          <h4 class="font-semibold">Dr. Anjali Sharma</h4>
+          <p class="text-sm text-gray-600">Senior Vaidya, Panchakarma Specialist</p>
+        </div>
+        <div class="p-6 border rounded-lg text-center">
+          <div class="w-20 h-20 rounded-full mx-auto mb-3 bg-[var(--brand)]/10 flex items-center justify-center text-2xl brand-text">RK</div>
+          <h4 class="font-semibold">Dr. Rajesh Kumar</h4>
+          <p class="text-sm text-gray-600">Clinical Lead, Research & Outcomes</p>
+        </div>
+        <div class="p-6 border rounded-lg text-center">
+          <div class="w-20 h-20 rounded-full mx-auto mb-3 bg-[var(--brand)]/10 flex items-center justify-center text-2xl brand-text">PP</div>
+          <h4 class="font-semibold">Dr. Priya Patel</h4>
+          <p class="text-sm text-gray-600">Therapy Programs & Patient Success</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats / Social Proof -->
+  <section class="container mx-auto px-6 pb-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+      <div class="card p-6"><div class="text-3xl font-extrabold brand-text">5k+</div><div class="text-sm text-gray-600">Therapy Sessions</div></div>
+      <div class="card p-6"><div class="text-3xl font-extrabold brand-text">1.2k+</div><div class="text-sm text-gray-600">Patients Served</div></div>
+      <div class="card p-6"><div class="text-3xl font-extrabold brand-text">92%</div><div class="text-sm text-gray-600">Avg Adherence</div></div>
+      <div class="card p-6"><div class="text-3xl font-extrabold brand-text">4.8/5</div><div class="text-sm text-gray-600">Patient Rating</div></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="brand-gradient text-white py-12">
+    <div class="container mx-auto px-6 text-center">
+      <h3 class="text-2xl md:text-3xl font-bold mb-3">Begin Your Ayurvedic Journey</h3>
+      <p class="opacity-90 mb-6">Book a consultation or explore therapies tailored to you.</p>
+      <a href="schedule.html" class="inline-block bg-white text-[var(--brand)] font-semibold py-3 px-6 rounded-full">Schedule an Appointment</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[var(--brand)] text-white py-12" style="--brand:#0a7e3d">
+    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h5 class="text-lg font-bold mb-4">AyurSutra</h5>
+        <p class="text-white/80">123 Wellness Street, Ayurveda City</p>
+        <p class="text-white/80">+91 98765 43210</p>
+        <p class="text-white/80">info@panchakarma-center.com</p>
+      </div>
+      <div>
+        <h5 class="text-lg font-bold mb-4">Quick Links</h5>
+        <ul class="space-y-2">
+          <li><a href="schedule.html" class="hover:underline">Schedule</a></li>
+          <li><a href="profile.html" class="hover:underline">Records</a></li>
+          <li><a href="about.html" class="hover:underline">About</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-lg font-bold mb-4">Hours</h5>
+        <ul class="space-y-1 text-white/80">
+          <li>Mon-Fri: 9:00 AM - 7:00 PM</li>
+          <li>Sat: 9:00 AM - 5:00 PM</li>
+          <li>Sun: 10:00 AM - 4:00 PM</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+
+
