@@ -17,8 +17,6 @@ const products = [
     benefits: ["Hormonal balance", "Reproductive health", "Immunity support"],
     image: "assets/shatavari.jpg",
   },
-
-  // Additional Oils
   {
     id: 1,
     name: "Brahmi Oil",
@@ -103,8 +101,6 @@ const products = [
     benefits: ["Brightens skin", "Reduces dark spots", "Anti-aging"],
     image: "assets/kumkumadi.jpg",
   },
-
-  // Ayurvedic Tablets
   {
     id: 4,
     name: "Ashwagandha Capsules",
@@ -171,8 +167,6 @@ const products = [
     ],
     image: "assets/haritki.jpg",
   },
-
-  // Tools
   {
     id: 5,
     name: "Copper Water Bottle",
@@ -228,7 +222,6 @@ const checkoutForm = document.getElementById("checkout-form");
 const checkoutSummary = document.getElementById("checkout-summary");
 const cancelCheckoutBtn = document.getElementById("cancel-checkout-btn");
 
-// Modal Elements
 const customModal = document.getElementById("custom-modal");
 const modalMessage = document.getElementById("modal-message");
 const modalCloseBtn = document.getElementById("modal-close-btn");
@@ -236,13 +229,11 @@ const modalOkBtn = document.getElementById("modal-ok-btn");
 
 let cart = {};
 
-// Custom alert function using a modal
 function showAlert(message) {
   modalMessage.textContent = message;
   customModal.style.display = "block";
 }
 
-// Close modal function
 function closeModal() {
   customModal.style.display = "none";
 }
@@ -263,8 +254,9 @@ if (customModal) {
   });
 }
 
-// Function to render products based on category
 function renderProducts(category) {
+  if (!productList) return;
+
   productList.innerHTML = "";
   const filteredProducts =
     category === "All"
@@ -278,7 +270,6 @@ function renderProducts(category) {
     const productCard = document.createElement("div");
     productCard.className = "bg-white rounded-lg shadow-md product-card p-4";
 
-    // Construct the benefits list HTML
     const benefitsHtml = product.benefits
       .map(
         (benefit) =>
@@ -314,15 +305,14 @@ function renderProducts(category) {
   });
 }
 
-// Function to update the cart
 function updateCart() {
+  if (!cartItemsList) return;
+
   let totalItems = 0;
   let totalPrice = 0;
 
-  // Clear the cart items list
   cartItemsList.innerHTML = "";
 
-  // Check if the cart is empty
   const cartKeys = Object.keys(cart);
   if (cartKeys.length === 0) {
     cartItemsList.innerHTML =
@@ -335,7 +325,6 @@ function updateCart() {
     totalItems += quantity;
     totalPrice += product.price * quantity;
 
-    // Create and append cart item element
     const cartItem = document.createElement("div");
     cartItem.className = "flex items-center justify-between border-b pb-2";
     cartItem.innerHTML = `
@@ -354,19 +343,16 @@ function updateCart() {
   cartTotal.textContent = `₹${totalPrice}`;
 }
 
-// Event listener for category links
 document.querySelectorAll(".category-link").forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
     const category = e.target.dataset.category;
 
-    // Remove active class from all links
     document.querySelectorAll(".category-link").forEach((l) => {
       l.classList.remove("bg-green-100", "text-green-700", "font-medium");
       l.classList.add("hover:bg-gray-100");
     });
 
-    // Add active class to the clicked link
     e.target.classList.add("bg-green-100", "text-green-700", "font-medium");
     e.target.classList.remove("hover:bg-gray-100");
 
@@ -374,10 +360,8 @@ document.querySelectorAll(".category-link").forEach((link) => {
   });
 });
 
-// Event delegation for product quantity and add to cart buttons
 if (productList) {
   productList.addEventListener("click", (e) => {
-    // Handle quantity buttons
     if (e.target.closest(".quantity-btn")) {
       const button = e.target.closest(".quantity-btn");
       const action = button.dataset.action;
@@ -397,7 +381,6 @@ if (productList) {
       quantityDisplay.textContent = currentQuantity;
     }
 
-    // Handle add to cart button
     if (e.target.closest(".add-to-cart-btn")) {
       const button = e.target.closest(".add-to-cart-btn");
       const id = button.dataset.id;
@@ -422,46 +405,39 @@ if (productList) {
   });
 }
 
-// Event delegation for deleting items from the cart
-cartItemsList.addEventListener("click", (e) => {
-  if (e.target.closest(".delete-item-btn")) {
-    const button = e.target.closest(".delete-item-btn");
-    const id = button.dataset.id;
-
-    // Remove item from cart object
-    delete cart[id];
-
-    // Update the cart display
-    updateCart();
-  }
-});
-
-// Event listener for the checkout button
-checkoutBtn.addEventListener("click", () => {
-  if (Object.keys(cart).length === 0) {
-    showAlert("Your cart is empty. Please add items before checking out.");
-    return;
-  }
-
-  // Hide the product grid and show the checkout section
-  productGridSection.classList.add("hidden");
-  checkoutSection.classList.remove("hidden");
-
-  // Create checkout summary
-  let summaryHtml = '<h4 class="text-lg font-bold mb-2">Order Summary</h4>';
-  let summaryTotal = 0;
-  Object.keys(cart).forEach((productId) => {
-    const product = products.find((p) => p.id === parseInt(productId));
-    const quantity = cart[productId];
-    const itemTotal = product.price * quantity;
-    summaryTotal += itemTotal;
-    summaryHtml += `<div class="flex justify-between items-center text-sm mb-1"><span class="text-gray-600">${product.name} x${quantity}</span><span>₹${itemTotal}</span></div>`;
+if (cartItemsList) {
+  cartItemsList.addEventListener("click", (e) => {
+    if (e.target.closest(".delete-item-btn")) {
+      const button = e.target.closest(".delete-item-btn");
+      const id = button.dataset.id;
+      delete cart[id];
+      updateCart();
+    }
   });
-  summaryHtml += `<div class="flex justify-between items-center font-bold mt-4"><span class="text-xl">Total:</span><span class="text-green-600 text-xl">₹${summaryTotal}</span></div>`;
-  checkoutSummary.innerHTML = summaryHtml;
-});
+}
 
-// Event listener for the cancel checkout button
+if (checkoutBtn) {
+  checkoutBtn.addEventListener("click", () => {
+    if (Object.keys(cart).length === 0) {
+      showAlert("Your cart is empty. Please add items before checking out.");
+      return;
+    }
+    productGridSection.classList.add("hidden");
+    checkoutSection.classList.remove("hidden");
+    let summaryHtml = '<h4 class="text-lg font-bold mb-2">Order Summary</h4>';
+    let summaryTotal = 0;
+    Object.keys(cart).forEach((productId) => {
+      const product = products.find((p) => p.id === parseInt(productId));
+      const quantity = cart[productId];
+      const itemTotal = product.price * quantity;
+      summaryTotal += itemTotal;
+      summaryHtml += `<div class="flex justify-between items-center text-sm mb-1"><span class="text-gray-600">${product.name} x${quantity}</span><span>₹${itemTotal}</span></div>`;
+    });
+    summaryHtml += `<div class="flex justify-between items-center font-bold mt-4"><span class="text-xl">Total:</span><span class="text-green-600 text-xl">₹${summaryTotal}</span></div>`;
+    checkoutSummary.innerHTML = summaryHtml;
+  });
+}
+
 if (cancelCheckoutBtn) {
   cancelCheckoutBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -470,56 +446,104 @@ if (cancelCheckoutBtn) {
   });
 }
 
-// Event listener for form submission
-checkoutForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  // In a real app, this is where you'd process payment and send data to a server.
+if (checkoutForm) {
+  checkoutForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    showAlert("Thank you for your order! Your purchase has been confirmed.");
+    cart = {};
+    updateCart();
+    setTimeout(() => {
+      checkoutSection.classList.add("hidden");
+      productGridSection.classList.remove("hidden");
+    }, 500);
+    checkoutForm.reset();
+  });
+}
 
-  showAlert("Thank you for your order! Your purchase has been confirmed.");
-
-  // Reset the cart and switch back to the main product page
-  cart = {};
-  updateCart();
-
-  // Hide the checkout section and show the product grid after a slight delay for user to see the alert
-  setTimeout(() => {
-    checkoutSection.classList.add("hidden");
-    productGridSection.classList.remove("hidden");
-  }, 500);
-
-  // Clear the form fields
-  checkoutForm.reset();
-});
-
-// Initial rendering of all products
 document.addEventListener("DOMContentLoaded", () => {
   renderProducts("All");
 });
 
-// Highlight selected time slot
-document.addEventListener("DOMContentLoaded", () => {
-  const timeSlotsContainer = document.querySelector(".time-slots");
-
-  if (timeSlotsContainer) {
-    timeSlotsContainer.addEventListener("click", (e) => {
-      if (e.target.tagName === "BUTTON") {
-        document
-          .querySelectorAll(".time-slots button")
-          .forEach((btn) => btn.classList.remove("active"));
-        e.target.classList.add("active");
-        console.log("Selected time:", e.target.textContent);
-      }
-    });
-  } else {
-    console.error("⚠️ .time-slots container not found in DOM");
-  }
-});
-
 function selectTreatment(card) {
-  // Remove selection from all cards
   document
     .querySelectorAll(".card")
     .forEach((c) => c.classList.remove("selected"));
-  // Add selection to clicked card
   card.classList.add("selected");
+}
+
+const timeSlotsContainer = document.querySelector(".time-slots");
+
+if (timeSlotsContainer) {
+  timeSlotsContainer.addEventListener("click", (event) => {
+    if (event.target.tagName === "BUTTON") {
+      timeSlotsContainer.querySelectorAll("button").forEach((button) => {
+        button.classList.remove("active");
+      });
+      event.target.classList.add("active");
+    }
+  });
+}
+
+const appointmentForm = document.querySelector("form");
+
+if (appointmentForm) {
+  appointmentForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const selectedTreatment = document.querySelector(".card.selected");
+    if (!selectedTreatment) {
+      showAlert("Please select a Panchakarma treatment.");
+      return;
+    }
+
+    const dateInput = document.querySelector('input[type="date"]');
+    if (!dateInput.value) {
+      showAlert("Please select a preferred date.");
+      return;
+    }
+
+    const selectedTimeSlot = document.querySelector(
+      ".time-slots button.active"
+    );
+    if (!selectedTimeSlot) {
+      showAlert("Please select a preferred time slot.");
+      return;
+    }
+
+    const fullName = document.querySelector('input[type="text"]').value.trim();
+    const phoneNumber = document
+      .querySelector('input[type="tel"]')
+      .value.trim();
+    const gender = document.querySelector("select").value;
+
+    if (!fullName || !phoneNumber || gender === "Select gender") {
+      showAlert(
+        "Please fill in all the required fields: Full Name, Phone Number, and Gender."
+      );
+      return;
+    }
+
+    const phoneNumberPattern = /^\d{10}$/;
+    if (!phoneNumberPattern.test(phoneNumber)) {
+      showAlert("Please enter a valid 10-digit phone number.");
+      return;
+    }
+
+    showAlert(
+      "Appointment booked successfully! We will contact you within 24 hours to confirm."
+    );
+
+    if (selectedTreatment) {
+      selectedTreatment.classList.remove("selected");
+    }
+
+    if (selectedTimeSlot) {
+      selectedTimeSlot.classList.remove("active");
+    }
+
+    // Explicitly reset the date input
+    dateInput.value = "";
+
+    appointmentForm.reset();
+  });
 }

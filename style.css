@@ -214,7 +214,8 @@ body {
   
   .time-slots button { 
     padding: 10px 15px; 
-    border: 1px solid #ccc; border-radius: 6px; 
+    border: 1px solid #ccc; 
+    border-radius: 6px; 
     background: #fff; 
     cursor: pointer; 
   }
@@ -260,7 +261,7 @@ body {
     margin-bottom: 10px; 
   }
 
-  .time-slots > button.active {
+  .time-slots button.active {
     background-color: #136d2d !important;
     color: #fff !important;
 }
