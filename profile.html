@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Profile - AyurSutra</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 100%);
+            min-height: 100vh;
+            color: #2d5a2d;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2d5a2d 0%, #4a7c4a 100%);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 20px rgba(45, 90, 45, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #90ee90;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-menu a:hover {
+            color: #90ee90;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Patient Basic Info Section */
+        .patient-header {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(45, 90, 45, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .patient-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4a7c4a 0%, #90ee90 50%, #4a7c4a 100%);
+        }
+
+        .patient-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4a7c4a 0%, #2d5a2d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 8px 30px rgba(45, 90, 45, 0.3);
+            position: relative;
+        }
+
+        .patient-avatar .status-indicator {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4caf50;
+            border: 3px solid white;
+        }
+
+        .patient-info {
+            flex: 1;
+        }
+
+        .patient-info h2 {
+            font-size: 2rem;
+            color: #2d5a2d;
+            margin-bottom: 0.5rem;
+        }
+
+        .patient-id {
+            background: #e8f5e8;
+            color: #4a7c4a;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .patient-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+        }
+
+        .detail-item i {
+            color: #4a7c4a;
+            width: 16px;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-section {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9f8 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 
+                0 10px 40px rgba(45, 90, 45, 0.1),
+                0 4px 20px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dashboard-section:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 
+                0 20px 60px rgba(45, 90, 45, 0.15),
+                0 8px 30px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+
+        .dashboard-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4a7c4a 0%, #90ee90 50%, #4a7c4a 100%);
+            box-shadow: 0 2px 4px rgba(45, 90, 45, 0.3);
+        }
+
+        .dashboard-section::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(74, 124, 74, 0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .dashboard-section:hover::after {
+            opacity: 1;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #4a7c4a 0%, #2d5a2d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #2d5a2d;
+            font-weight: 600;
+        }
+
+        /* Compact Calendar Section */
+        .calendar-section {
+            grid-column: 1 / -1;
+            margin-bottom: 2rem;
+        }
+
+        .calendar-container {
+            background: linear-gradient(145deg, #f8f9f8 0%, #e8f5e8 100%);
+            border-radius: 20px;
+            padding: 1rem;
+            box-shadow: 
+                0 8px 32px rgba(45, 90, 45, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calendar-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4a7c4a 0%, #90ee90 50%, #4a7c4a 100%);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-nav-btn {
+            background: linear-gradient(145deg, #4a7c4a 0%, #2d5a2d 100%);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.8rem;
+            box-shadow: 
+                0 4px 12px rgba(45, 90, 45, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calendar-nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .calendar-nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .calendar-nav-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 8px 25px rgba(45, 90, 45, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .calendar-nav-btn:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .calendar-month {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2d5a2d;
+            min-width: 120px;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(45, 90, 45, 0.1);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            background: #e8f5e8;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.1),
+                0 2px 8px rgba(45, 90, 45, 0.1);
+        }
+
+        .calendar-day-header {
+            background: linear-gradient(145deg, #4a7c4a 0%, #2d5a2d 100%);
+            color: white;
+            padding: 0.6rem 0.3rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .calendar-day {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9f8 100%);
+            padding: 0.5rem 0.3rem;
+            min-height: 60px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            border-radius: 8px;
+            margin: 1px;
+            box-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .calendar-day:hover {
+            background: linear-gradient(145deg, #f0f8f0 0%, #e8f5e8 100%);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 
+                0 8px 20px rgba(45, 90, 45, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            z-index: 10;
+        }
+
+        .calendar-day.other-month {
+            background: linear-gradient(145deg, #f8f8f8 0%, #e8e8e8 100%);
+            color: #ccc;
+            opacity: 0.6;
+        }
+
+        .calendar-day.today {
+            background: linear-gradient(145deg, #e8f5e8 0%, #c8e6c9 100%);
+            border: 2px solid #4a7c4a;
+            box-shadow: 
+                0 4px 12px rgba(74, 124, 74, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transform: scale(1.02);
+        }
+
+        .calendar-day.has-appointment {
+            background: linear-gradient(145deg, #fff8e1 0%, #ffecb3 100%);
+            border-left: 3px solid #ffa726;
+            box-shadow: 
+                0 4px 12px rgba(255, 167, 38, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .calendar-day.completed-appointment {
+            background: linear-gradient(145deg, #e8f5e8 0%, #c8e6c9 100%);
+            border-left: 3px solid #4a7c4a;
+            box-shadow: 
+                0 4px 12px rgba(74, 124, 74, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .day-number {
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+            font-size: 0.9rem;
+            color: #2d5a2d;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .appointment-indicator {
+            font-size: 1rem;
+            color: #ffa726;
+            margin-bottom: 0.2rem;
+            filter: drop-shadow(0 2px 4px rgba(255, 167, 38, 0.3));
+            animation: starPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes starPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .appointment-time {
+            font-size: 0.6rem;
+            color: #4a7c4a;
+            font-weight: 600;
+            text-align: center;
+            background: rgba(74, 124, 74, 0.1);
+            padding: 0.1rem 0.3rem;
+            border-radius: 8px;
+            border: 1px solid rgba(74, 124, 74, 0.2);
+        }
+
+        .appointment-details {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9f8 100%);
+            border: 1px solid #e8f5e8;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            z-index: 1000;
+            display: none;
+            min-width: 200px;
+            backdrop-filter: blur(10px);
+        }
+
+        .calendar-day:hover .appointment-details {
+            display: block;
+            animation: fadeInUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .appointment-details h4 {
+            color: #2d5a2d;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .appointment-details p {
+            color: #666;
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .appointment-status {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .appointment-status.scheduled {
+            background: linear-gradient(145deg, #fff3e0 0%, #ffe0b2 100%);
+            color: #f57c00;
+            box-shadow: 0 2px 4px rgba(245, 124, 0, 0.2);
+        }
+
+        .appointment-status.completed {
+            background: linear-gradient(145deg, #e8f5e8 0%, #c8e6c9 100%);
+            color: #2e7d32;
+            box-shadow: 0 2px 4px rgba(46, 125, 50, 0.2);
+        }
+
+        .appointment-status.cancelled {
+            background: linear-gradient(145deg, #ffebee 0%, #ffcdd2 100%);
+            color: #c62828;
+            box-shadow: 0 2px 4px rgba(198, 40, 40, 0.2);
+        }
+
+        /* Medical History Section */
+        .medical-history {
+            grid-column: 1 / -1;
+        }
+
+        .condition-item {
+            background: #f8f9f8;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #4a7c4a;
+            position: relative;
+        }
+
+        .condition-name {
+            font-weight: 600;
+            color: #2d5a2d;
+            margin-bottom: 0.5rem;
+        }
+
+        .condition-details {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .severity-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .severity-low {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .severity-medium {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .severity-high {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        /* Vital Signs Section */
+        .vital-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .vital-card {
+            background: #f8f9f8;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .vital-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(45, 90, 45, 0.15);
+        }
+
+        .vital-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4a7c4a 0%, #2d5a2d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin: 0 auto 1rem;
+        }
+
+        .vital-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d5a2d;
+            margin-bottom: 0.5rem;
+        }
+
+        .vital-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .vital-trend {
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+
+        .trend-up {
+            color: #4caf50;
+        }
+
+        .trend-down {
+            color: #f44336;
+        }
+
+        .trend-stable {
+            color: #666;
+        }
+
+        .chart-container {
+            background: #f8f9f8;
+            border-radius: 12px;
+            padding: 1rem;
+            height: 200px;
+            position: relative;
+        }
+
+        /* Therapy Details Section */
+        .therapy-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .therapy-item {
+            background: #f8f9f8;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid #4a7c4a;
+            transition: transform 0.3s ease;
+        }
+
+        .therapy-item:hover {
+            transform: translateX(5px);
+        }
+
+        .therapy-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .therapy-name {
+            font-weight: 600;
+            color: #2d5a2d;
+            font-size: 1.1rem;
+        }
+
+        .therapy-status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .status-completed {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .status-scheduled {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .therapy-progress {
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            background: #e8f5e8;
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4a7c4a 0%, #2d5a2d 100%);
+            transition: width 0.3s ease;
+        }
+
+        .therapy-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Progress Tracker Section */
+        .progress-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .metric-card {
+            background: #f8f9f8;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2d5a2d;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .symptom-chart {
+            background: #f8f9f8;
+            border-radius: 12px;
+            padding: 1rem;
+            height: 250px;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .btn {
+            background: linear-gradient(145deg, #4a7c4a 0%, #2d5a2d 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 6px 20px rgba(45, 90, 45, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 12px 35px rgba(45, 90, 45, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 
+                0 4px 15px rgba(45, 90, 45, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(145deg, #90ee90 0%, #4a7c4a 100%);
+            box-shadow: 
+                0 6px 20px rgba(144, 238, 144, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 
+                0 12px 35px rgba(144, 238, 144, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9f8 100%);
+            border: 2px solid #4a7c4a;
+            color: #4a7c4a;
+            box-shadow: 
+                0 6px 20px rgba(74, 124, 74, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .btn-outline:hover {
+            background: linear-gradient(145deg, #4a7c4a 0%, #2d5a2d 100%);
+            color: white;
+            box-shadow: 
+                0 12px 35px rgba(45, 90, 45, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        /* Tooltips */
+        .tooltip {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dotted #4a7c4a;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #2d5a2d;
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 0.5rem;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .patient-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .patient-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .vital-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .main-container {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .vital-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .progress-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* 3D Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) rotateX(10deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(-5px) rotate(-1deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .dashboard-section {
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .dashboard-section:nth-child(1) { animation-delay: 0.1s; }
+        .dashboard-section:nth-child(2) { animation-delay: 0.2s; }
+        .dashboard-section:nth-child(3) { animation-delay: 0.3s; }
+        .dashboard-section:nth-child(4) { animation-delay: 0.4s; }
+
+        .patient-header {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .section-icon {
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .vital-card:hover {
+            animation: bounce 0.6s ease;
+        }
+
+        .therapy-item:hover {
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .appointment-indicator {
+            animation: starPulse 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <h1>AyurSutra</h1>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="ayursutra.html">Home</a></li>
+                    <li><a href="#profile">Patient Profile</a></li>
+                    <li><a href="#calendar">Calendar</a></li>
+                    <li><a href="#therapies">Therapies</a></li>
+                    <li><a href="#reports">Reports</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <!-- Patient Basic Info Section -->
+        <div class="patient-header">
+            <div class="patient-avatar">
+                <i class="fas fa-user"></i>
+                <div class="status-indicator"></div>
+            </div>
+            <div class="patient-info">
+                <h2>Rajesh Kumar</h2>
+                <div class="patient-id">Patient ID: PK-2024-001</div>
+                <div class="patient-details">
+                    <div class="detail-item">
+                        <i class="fas fa-birthday-cake"></i>
+                        <span>Age: 45 years</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-venus-mars"></i>
+                        <span>Gender: Male</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 98765 43210</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>rajesh.kumar@email.com</span>
+                </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Delhi, India</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Member since: Jan 2024</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar Section -->
+        <div class="dashboard-section calendar-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="section-title">Appointment Calendar</div>
+            </div>
+            
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button class="calendar-nav-btn" id="prev-month">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="calendar-month" id="current-month">March 2024</div>
+                    <button class="calendar-nav-btn" id="next-month">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <div class="calendar-grid" id="calendar-grid">
+                    <!-- Calendar will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+
+            <!-- Vital Signs Section -->
+            <div class="dashboard-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-heartbeat"></i>
+                </div>
+                    <div class="section-title">Vital Signs (Latest)</div>
+            </div>
+
+                <div class="vital-cards">
+                    <div class="vital-card">
+                        <div class="vital-icon">
+                            <i class="fas fa-tint"></i>
+                    </div>
+                        <div class="vital-value">142/88</div>
+                        <div class="vital-label">Blood Pressure (mmHg)</div>
+                        <div class="vital-trend trend-down">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>↓ 5 points</span>
+                </div>
+                </div>
+
+                    <div class="vital-card">
+                        <div class="vital-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="vital-value">78</div>
+                        <div class="vital-label">Pulse Rate (bpm)</div>
+                        <div class="vital-trend trend-stable">
+                            <i class="fas fa-minus"></i>
+                            <span>Stable</span>
+            </div>
+        </div>
+
+                    <div class="vital-card">
+                        <div class="vital-icon">
+                            <i class="fas fa-weight"></i>
+                </div>
+                        <div class="vital-value">78.5</div>
+                        <div class="vital-label">Weight (kg)</div>
+                        <div class="vital-trend trend-down">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>↓ 2.3 kg</span>
+                </div>
+                    </div>
+
+                    <div class="vital-card">
+                        <div class="vital-icon">
+                            <i class="fas fa-chart-line"></i>
+                </div>
+                        <div class="vital-value">26.8</div>
+                        <div class="vital-label">BMI <span class="tooltip">ℹ️
+                            <span class="tooltiptext">Body Mass Index - calculated as weight(kg) / height(m)²</span>
+                        </span></div>
+                        <div class="vital-trend trend-down">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>↓ 0.8</span>
+                </div>
+                </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="weightChart"></canvas>
+                </div>
+                </div>
+
+            <!-- Therapy Details Section -->
+            <div class="dashboard-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-spa"></i>
+                </div>
+                    <div class="section-title">Current Therapy Plan</div>
+        </div>
+
+                <div class="therapy-grid">
+                    <div class="therapy-item">
+                        <div class="therapy-header">
+                            <div class="therapy-name">
+                                Abhyanga Massage <span class="tooltip">ℹ️
+                                    <span class="tooltiptext">Traditional Ayurvedic oil massage for relaxation and detoxification</span>
+                                </span>
+                            </div>
+                            <div class="therapy-status status-active">Active</div>
+                        </div>
+                        <div class="therapy-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 80%"></div>
+                            </div>
+                            <small>Progress: 8/10 sessions completed</small>
+                        </div>
+                        <div class="therapy-details">
+                            <div><strong>Frequency:</strong> 3x/week</div>
+                            <div><strong>Duration:</strong> 60 min</div>
+                            <div><strong>Next:</strong> Tomorrow 9 AM</div>
+                        </div>
+                    </div>
+
+                    <div class="therapy-item">
+                        <div class="therapy-header">
+                            <div class="therapy-name">
+                                Panchakarma <span class="tooltip">ℹ️
+                                    <span class="tooltiptext">Five-fold detoxification therapy for deep cleansing</span>
+                                </span>
+                            </div>
+                            <div class="therapy-status status-active">Active</div>
+                        </div>
+                        <div class="therapy-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%"></div>
+                            </div>
+                            <small>Progress: 3/5 phases completed</small>
+                        </div>
+                        <div class="therapy-details">
+                            <div><strong>Current Phase:</strong> Virechana</div>
+                            <div><strong>Duration:</strong> 120 min</div>
+                            <div><strong>Next:</strong> Friday 2 PM</div>
+                        </div>
+                    </div>
+
+                    <div class="therapy-item">
+                        <div class="therapy-header">
+                            <div class="therapy-name">
+                                Shirodhara <span class="tooltip">ℹ️
+                                    <span class="tooltiptext">Continuous oil flow on forehead for mental relaxation</span>
+                                </span>
+                            </div>
+                            <div class="therapy-status status-scheduled">Scheduled</div>
+                        </div>
+                        <div class="therapy-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 40%"></div>
+                            </div>
+                            <small>Progress: 2/5 sessions completed</small>
+                        </div>
+                        <div class="therapy-details">
+                            <div><strong>Frequency:</strong> 2x/week</div>
+                            <div><strong>Duration:</strong> 45 min</div>
+                            <div><strong>Next:</strong> Monday 11 AM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Tracker Section -->
+            <div class="dashboard-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-chart-area"></i>
+                    </div>
+                    <div class="section-title">Progress Tracker</div>
+                </div>
+
+                <div class="progress-metrics">
+                    <div class="metric-card">
+                        <div class="metric-value">4.2</div>
+                        <div class="metric-label">Avg Pain Score (1-10)</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">92%</div>
+                        <div class="metric-label">Adherence Rate</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">7.8</div>
+                        <div class="metric-label">Energy Level (1-10)</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">6.5</div>
+                        <div class="metric-label">Sleep Quality (1-10)</div>
+                    </div>
+                </div>
+
+                <div class="symptom-chart">
+                    <canvas id="symptomChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medical History Section -->
+        <div class="dashboard-section medical-history">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <div class="section-title">Medical History</div>
+            </div>
+            
+            <div class="condition-item">
+                <div class="condition-name">
+                    Hypertension <span class="tooltip">ℹ️
+                        <span class="tooltiptext">High blood pressure - a chronic condition requiring ongoing management</span>
+                    </span>
+                </div>
+                <div class="condition-details">Diagnosed: 2019 | On medication: Amlodipine 5mg daily</div>
+                <div class="severity-badge severity-medium">Moderate</div>
+            </div>
+
+            <div class="condition-item">
+                <div class="condition-name">
+                    Diabetes Type 2 <span class="tooltip">ℹ️
+                        <span class="tooltiptext">Type 2 diabetes - managed with diet, exercise, and medication</span>
+                    </span>
+                </div>
+                <div class="condition-details">Diagnosed: 2020 | HbA1c: 7.2% | On Metformin 500mg twice daily</div>
+                <div class="severity-badge severity-medium">Moderate</div>
+            </div>
+
+            <div class="condition-item">
+                <div class="condition-name">Chronic Back Pain</div>
+                <div class="condition-details">L4-L5 disc degeneration | Duration: 3 years | Primary reason for Ayurvedic treatment</div>
+                <div class="severity-badge severity-high">High</div>
+            </div>
+
+            <div class="condition-item">
+                <div class="condition-name">Allergies</div>
+                <div class="condition-details">Penicillin (severe), Shellfish (mild), Dust mites (mild)</div>
+                <div class="severity-badge severity-low">Low</div>
+            </div>
+
+            <div class="condition-item">
+                <div class="condition-name">Past Procedures</div>
+                <div class="condition-details">Appendectomy (2015), Colonoscopy (2022) - Normal findings</div>
+                <div class="severity-badge severity-low">Low</div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="btn" onclick="editProfile()">
+                <i class="fas fa-edit"></i>
+                Edit Profile
+            </button>
+            <button class="btn btn-secondary" onclick="addVitalRecord()">
+                <i class="fas fa-plus"></i>
+                Add Vital Record
+            </button>
+            <button class="btn btn-outline" onclick="downloadMedicalSummary()">
+                <i class="fas fa-download"></i>
+                Download Medical Summary
+            </button>
+            <button class="btn btn-outline" onclick="scheduleAppointment()">
+                <i class="fas fa-calendar-plus"></i>
+                Schedule Appointment
+            </button>
+            <button class="btn btn-outline" onclick="viewReports()">
+                <i class="fas fa-chart-bar"></i>
+                View Reports
+            </button>
+        </div>
+    </main>
+
+    <script>
+        // Sample data for charts
+        const weightData = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Weight (kg)',
+                data: [82.3, 81.8, 81.2, 80.5, 79.8, 78.5],
+                borderColor: '#4a7c4a',
+                backgroundColor: 'rgba(74, 124, 74, 0.1)',
+                tension: 0.4,
+                fill: true
+            }]
+        };
+
+        // Sample appointment data with more appointments
+        const appointments = [
+            {
+                id: 1,
+                date: new Date(2024, 2, 3),
+                time: '10:00',
+                therapy: 'Abhyanga Massage',
+                therapist: 'Dr. Anjali Sharma',
+                status: 'completed',
+                duration: 60,
+                notes: 'Excellent session, felt very relaxed'
+            },
+            {
+                id: 2,
+                date: new Date(2024, 2, 5),
+                time: '09:00',
+                therapy: 'Panchakarma',
+                therapist: 'Dr. Rajesh Kumar',
+                status: 'completed',
+                duration: 120,
+                notes: 'Good progress, slight discomfort'
+            },
+            {
+                id: 3,
+                date: new Date(2024, 2, 7),
+                time: '14:00',
+                therapy: 'Shirodhara',
+                therapist: 'Dr. Priya Patel',
+                status: 'completed',
+                duration: 45,
+                notes: 'Very relaxing session'
+            },
+            {
+                id: 4,
+                date: new Date(2024, 2, 9),
+                time: '11:00',
+                therapy: 'Abhyanga Massage',
+                therapist: 'Dr. Anjali Sharma',
+                status: 'completed',
+                duration: 60,
+                notes: 'Follow-up session'
+            },
+            {
+                id: 5,
+                date: new Date(2024, 2, 12),
+                time: '09:30',
+                therapy: 'Basti Treatment',
+                therapist: 'Dr. Amit Singh',
+                status: 'scheduled',
+                duration: 30,
+                notes: 'New therapy introduction'
+            },
+            {
+                id: 6,
+                date: new Date(2024, 2, 14),
+                time: '16:00',
+                therapy: 'Panchakarma',
+                therapist: 'Dr. Rajesh Kumar',
+                status: 'scheduled',
+                duration: 120,
+                notes: 'Phase 2 treatment'
+            },
+            {
+                id: 7,
+                date: new Date(2024, 2, 16),
+                time: '10:30',
+                therapy: 'Abhyanga Massage',
+                therapist: 'Dr. Anjali Sharma',
+                status: 'scheduled',
+                duration: 60,
+                notes: 'Regular session'
+            },
+            {
+                id: 8,
+                date: new Date(2024, 2, 18),
+                time: '15:00',
+                therapy: 'Shirodhara',
+                therapist: 'Dr. Priya Patel',
+                status: 'scheduled',
+                duration: 45,
+                notes: 'Mental relaxation therapy'
+            },
+            {
+                id: 9,
+                date: new Date(2024, 2, 21),
+                time: '11:30',
+                therapy: 'Basti Treatment',
+                therapist: 'Dr. Amit Singh',
+                status: 'scheduled',
+                duration: 30,
+                notes: 'Follow-up treatment'
+            },
+            {
+                id: 10,
+                date: new Date(2024, 2, 23),
+                time: '09:00',
+                therapy: 'Panchakarma',
+                therapist: 'Dr. Rajesh Kumar',
+                status: 'scheduled',
+                duration: 120,
+                notes: 'Deep cleansing session'
+            },
+            {
+                id: 11,
+                date: new Date(2024, 2, 26),
+                time: '14:30',
+                therapy: 'Abhyanga Massage',
+                therapist: 'Dr. Anjali Sharma',
+                status: 'scheduled',
+                duration: 60,
+                notes: 'Therapeutic massage'
+            },
+            {
+                id: 12,
+                date: new Date(2024, 2, 28),
+                time: '10:00',
+                therapy: 'Shirodhara',
+                therapist: 'Dr. Priya Patel',
+                status: 'scheduled',
+                duration: 45,
+                notes: 'Stress relief session'
+            },
+            {
+                id: 13,
+                date: new Date(2024, 2, 30),
+                time: '16:30',
+                therapy: 'Basti Treatment',
+                therapist: 'Dr. Amit Singh',
+                status: 'scheduled',
+                duration: 30,
+                notes: 'Final treatment of month'
+            }
+        ];
+
+        // Calendar functionality
+        class Calendar {
+            constructor() {
+                this.currentDate = new Date();
+                this.init();
+            }
+
+            init() {
+                this.renderCalendar();
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                document.getElementById('prev-month').addEventListener('click', () => {
+                    this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+                    this.renderCalendar();
+                });
+
+                document.getElementById('next-month').addEventListener('click', () => {
+                    this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+                    this.renderCalendar();
+                });
+            }
+
+            renderCalendar() {
+                const calendarGrid = document.getElementById('calendar-grid');
+                const currentMonth = document.getElementById('current-month');
+                
+                // Update month display
+                currentMonth.textContent = this.currentDate.toLocaleDateString('en-US', { 
+                    month: 'long', 
+                    year: 'numeric' 
+                });
+
+                // Clear calendar
+                calendarGrid.innerHTML = '';
+
+                // Add day headers
+                const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                dayHeaders.forEach(day => {
+                    const dayHeader = document.createElement('div');
+                    dayHeader.className = 'calendar-day-header';
+                    dayHeader.textContent = day;
+                    calendarGrid.appendChild(dayHeader);
+                });
+
+                // Get first day of month and number of days
+                const firstDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), 1);
+                const lastDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 0);
+                const daysInMonth = lastDay.getDate();
+                const startingDayOfWeek = firstDay.getDay();
+
+                // Add empty cells for days before month starts
+                for (let i = 0; i < startingDayOfWeek; i++) {
+                    const emptyDay = document.createElement('div');
+                    emptyDay.className = 'calendar-day other-month';
+                    calendarGrid.appendChild(emptyDay);
+                }
+
+                // Add days of the month
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dayElement = document.createElement('div');
+                    dayElement.className = 'calendar-day';
+                    
+                    const dayDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), day);
+                    const today = new Date();
+                    
+                    // Check if it's today
+                    if (dayDate.toDateString() === today.toDateString()) {
+                        dayElement.classList.add('today');
+                    }
+
+                    // Check for appointments on this day
+                    const dayAppointments = appointments.filter(appointment => 
+                        appointment.date.toDateString() === dayDate.toDateString()
+                    );
+
+                    if (dayAppointments.length > 0) {
+                        const hasCompleted = dayAppointments.some(appointment => appointment.status === 'completed');
+                        const hasScheduled = dayAppointments.some(appointment => appointment.status === 'scheduled');
+                        
+                        if (hasCompleted) {
+                            dayElement.classList.add('completed-appointment');
+                        } else if (hasScheduled) {
+                            dayElement.classList.add('has-appointment');
+                        }
+
+                        // Add appointment details
+                        const appointmentDetails = document.createElement('div');
+                        appointmentDetails.className = 'appointment-details';
+                        
+                        dayAppointments.forEach(appointment => {
+                            const appointmentDiv = document.createElement('div');
+                            appointmentDiv.innerHTML = `
+                                <h4>${appointment.therapy}</h4>
+                                <p>Time: ${appointment.time}</p>
+                                <p>Therapist: ${appointment.therapist}</p>
+                                <span class="appointment-status ${appointment.status}">${appointment.status}</span>
+                            `;
+                            appointmentDetails.appendChild(appointmentDiv);
+                        });
+                        
+                        dayElement.appendChild(appointmentDetails);
+                    }
+
+                    dayElement.innerHTML = `
+                        <div class="day-number">${day}</div>
+                        ${dayAppointments.length > 0 ? `
+                            <div class="appointment-indicator">⭐</div>
+                            <div class="appointment-time">${dayAppointments[0].time}</div>
+                        ` : ''}
+                    ` + dayElement.innerHTML;
+
+                    calendarGrid.appendChild(dayElement);
+                }
+            }
+        }
+
+        const symptomData = {
+            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+            datasets: [{
+                label: 'Pain Level',
+                data: [7, 6.5, 6, 5.5, 5, 4.2],
+                borderColor: '#e74c3c',
+                backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                tension: 0.4,
+                fill: true
+            }, {
+                label: 'Energy Level',
+                data: [4, 4.5, 5, 5.8, 6.5, 7.8],
+                borderColor: '#4caf50',
+                backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                tension: 0.4,
+                fill: true
+            }]
+        };
+
+        // Initialize charts
+        function initializeCharts() {
+            // Weight Chart
+            const weightCtx = document.getElementById('weightChart').getContext('2d');
+            new Chart(weightCtx, {
+                type: 'line',
+                data: weightData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 75,
+                            max: 85,
+                            grid: {
+                                color: 'rgba(74, 124, 74, 0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Symptom Chart
+            const symptomCtx = document.getElementById('symptomChart').getContext('2d');
+            new Chart(symptomCtx, {
+                type: 'line',
+                data: symptomData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10,
+                            grid: {
+                                color: 'rgba(74, 124, 74, 0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Action button functions
+        function editProfile() {
+            showNotification('Edit Profile feature would open here', 'info');
+            // In a real application, this would open a modal or navigate to edit page
+        }
+
+        function addVitalRecord() {
+            showNotification('Add Vital Record modal would open here', 'info');
+            // In a real application, this would open a form modal
+        }
+
+        function downloadMedicalSummary() {
+            // Show loading animation
+            showNotification('Generating medical summary...', 'info');
+            
+            // Create a more detailed medical summary
+            const medicalSummary = generateMedicalSummary();
+            
+            // Simulate processing time with progress
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 20;
+                if (progress <= 100) {
+                    showNotification(`Generating medical summary... ${progress}%`, 'info');
+                }
+            }, 300);
+            
+            setTimeout(() => {
+                clearInterval(progressInterval);
+                
+                // Create and download the summary
+                const element = document.createElement('a');
+                const file = new Blob([medicalSummary], {type: 'text/plain'});
+                element.href = URL.createObjectURL(file);
+                element.download = `Medical_Summary_${new Date().toISOString().split('T')[0]}.txt`;
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+                
+                showNotification('Medical summary downloaded successfully!', 'success');
+            }, 2000);
+        }
+
+        function generateMedicalSummary() {
+            const currentDate = new Date().toLocaleDateString();
+            return `
+AYURSUTRA MEDICAL SUMMARY
+Generated on: ${currentDate}
+Patient: Rajesh Kumar (PK-2024-001)
+
+=== PATIENT INFORMATION ===
+Name: Rajesh Kumar
+Age: 45 years
+Gender: Male
+Contact: +91 98765 43210
+Email: rajesh.kumar@email.com
+Location: Delhi, India
+Member Since: January 2024
+
+=== MEDICAL HISTORY ===
+1. Hypertension (Moderate)
+   - Diagnosed: 2019
+   - Medication: Amlodipine 5mg daily
+   
+2. Diabetes Type 2 (Moderate)
+   - Diagnosed: 2020
+   - HbA1c: 7.2%
+   - Medication: Metformin 500mg twice daily
+   
+3. Chronic Back Pain (High)
+   - L4-L5 disc degeneration
+   - Duration: 3 years
+   - Primary reason for Ayurvedic treatment
+   
+4. Allergies (Low)
+   - Penicillin (severe)
+   - Shellfish (mild)
+   - Dust mites (mild)
+   
+5. Past Procedures (Low)
+   - Appendectomy (2015)
+   - Colonoscopy (2022) - Normal findings
+
+=== CURRENT VITAL SIGNS ===
+Blood Pressure: 142/88 mmHg (↓ 5 points)
+Pulse Rate: 78 bpm (Stable)
+Weight: 78.5 kg (↓ 2.3 kg)
+BMI: 26.8 (↓ 0.8)
+
+=== THERAPY PLAN ===
+1. Abhyanga Massage (Active)
+   - Progress: 8/10 sessions completed (80%)
+   - Frequency: 3x/week
+   - Duration: 60 min
+   - Next: Tomorrow 9 AM
+   
+2. Panchakarma (Active)
+   - Progress: 3/5 phases completed (60%)
+   - Current Phase: Virechana
+   - Duration: 120 min
+   - Next: Friday 2 PM
+   
+3. Shirodhara (Scheduled)
+   - Progress: 2/5 sessions completed (40%)
+   - Frequency: 2x/week
+   - Duration: 45 min
+   - Next: Monday 11 AM
+
+=== PROGRESS TRACKING ===
+Average Pain Score: 4.2/10
+Adherence Rate: 92%
+Energy Level: 7.8/10
+Sleep Quality: 6.5/10
+
+=== UPCOMING APPOINTMENTS ===
+- March 12: Shirodhara (14:00) - Dr. Priya Patel
+- March 15: Abhyanga Massage (11:00) - Dr. Anjali Sharma
+- March 20: Basti Treatment (09:30) - Dr. Amit Singh
+- March 25: Panchakarma (16:00) - Dr. Rajesh Kumar
+
+=== RECOMMENDATIONS ===
+1. Continue current therapy plan as scheduled
+2. Monitor blood pressure regularly
+3. Maintain diabetes management routine
+4. Follow dietary recommendations
+5. Regular follow-up appointments
+
+This summary was generated by AyurSutra Patient Management System.
+For any questions, please contact your healthcare provider.
+
+---
+© 2024 AyurSutra - Traditional Ayurvedic Healthcare
+            `;
+        }
+
+        function scheduleAppointment() {
+            showNotification('Schedule Appointment feature would open here', 'info');
+            // In a real application, this would open a scheduling modal
+        }
+
+        function viewReports() {
+            showNotification('View Reports feature would open here', 'info');
+            // In a real application, this would navigate to reports page
+        }
+
+        function showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.className = `notification-toast notification-${type}`;
+                notification.textContent = message;
+                
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: ${type === 'success' ? '#4a7c4a' : type === 'error' ? '#e74c3c' : '#3498db'};
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+                    z-index: 3000;
+                    animation: slideIn 0.3s ease;
+                `;
+
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => {
+                        if (document.body.contains(notification)) {
+                            document.body.removeChild(notification);
+                        }
+                    }, 300);
+                }, 3000);
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCharts();
+            new Calendar();
+            
+            // Add animation delays to sections
+            const sections = document.querySelectorAll('.dashboard-section');
+            sections.forEach((section, index) => {
+                section.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Add CSS animations
+        const animationStyle = document.createElement('style');
+        animationStyle.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(animationStyle);
+    </script>
+</body>
+</html>
