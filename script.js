@@ -1,214 +1,31 @@
 const products = [
-  {
-    id: 3,
-    name: "Triphala Churna",
-    category: "Supplements",
-    price: 280,
-    description: "Traditional herbal powder for digestive health",
-    benefits: ["Digestive support", "Detoxification", "Immunity boost"],
-    image: "assets/triphla.jpg",
-  },
-  {
-    id: 7,
-    name: "Shatavari Powder",
-    category: "Supplements",
-    price: 420,
-    description: "Women's health tonic for hormonal balance",
-    benefits: ["Hormonal balance", "Reproductive health", "Immunity support"],
-    image: "assets/shatavari.jpg",
-  },
-  {
-    id: 1,
-    name: "Brahmi Oil",
-    category: "Herbal Oils",
-    price: 450,
-    description: "Pure Brahmi oil for mental clarity and hair health",
-    benefits: ["Improves memory", "Reduces stress", "Nourishes hair"],
-    image: "assets/bhrami oil.jpg",
-  },
-  {
-    id: 6,
-    name: "Neem Oil",
-    category: "Herbal Oils",
-    price: 380,
-    description: "Pure neem oil for skin conditions and healing",
-    benefits: ["Antibacterial", "Skin healing", "Natural antiseptic"],
-    image: "assets/neem.jpg",
-  },
-  {
-    id: 2,
-    name: "Sesame Oil (Til Oil)",
-    category: "Herbal Oils",
-    price: 320,
-    description: "Cold-pressed sesame oil for Abhyanga massage",
-    benefits: [
-      "Deep tissue nourishment",
-      "Improves circulation",
-      "Anti-aging properties",
-    ],
-    image: "assets/sesame.jpg",
-  },
-  {
-    id: 9,
-    name: "Dhanwantharam Thailam",
-    category: "Herbal Oils",
-    price: 480,
-    description: "Herbal oil used in Vata disorders and postnatal care",
-    benefits: [
-      "Relieves muscle pain",
-      "Strengthens nerves",
-      "Reduces inflammation",
-    ],
-    image: "assets/dhanwantharam.jpg",
-  },
-  {
-    id: 10,
-    name: "Kottamchukkadi Oil",
-    category: "Herbal Oils",
-    price: 400,
-    description: "Oil used in arthritis and neuromuscular pain treatments",
-    benefits: ["Reduces stiffness", "Improves flexibility", "Relieves pain"],
-    image: "assets/kottamchukkadi.jpg",
-  },
-  {
-    id: 11,
-    name: "Nirgundi Oil",
-    category: "Herbal Oils",
-    price: 360,
-    description: "Anti-inflammatory oil used for joint pain and swelling",
-    benefits: ["Pain relief", "Anti-swelling", "Muscle relaxation"],
-    image: "assets/nirgundi.jpg",
-  },
-  {
-    id: 12,
-    name: "Bala Thailam",
-    category: "Herbal Oils",
-    price: 390,
-    description: "Tonic oil used in nervous system disorders",
-    benefits: [
-      "Strengthens nerves",
-      "Reduces tremors",
-      "Supports Vata balance",
-    ],
-    image: "assets/bala.jpg",
-  },
-  {
-    id: 13,
-    name: "Kumkumadi Tailam",
-    category: "Herbal Oils",
-    price: 650,
-    description: "Luxury facial oil for skin brightening and radiance",
-    benefits: ["Brightens skin", "Reduces dark spots", "Anti-aging"],
-    image: "assets/kumkumadi.jpg",
-  },
-  {
-    id: 4,
-    name: "Ashwagandha Capsules",
-    category: "Medicines",
-    price: 650,
-    description: "Premium Ashwagandha extract for stress relief",
-    benefits: ["Stress reduction", "Energy boost", "Better sleep"],
-    image: "assets/ashwagandha.jpg",
-  },
-  {
-    id: 14,
-    name: "Triphala Guggul",
-    category: "Medicines",
-    price: 320,
-    description: "Herbal tablet used for detox and weight management",
-    benefits: ["Improves digestion", "Aids weight loss", "Removes toxins"],
-    image: "assets/triphla guggal.jpg",
-  },
-  {
-    id: 15,
-    name: "Yograj Guggul",
-    category: "Medicines",
-    price: 290,
-    description: "Ayurvedic tablet for joint and muscle health",
-    benefits: [
-      "Relieves arthritis",
-      "Reduces inflammation",
-      "Supports joint function",
-    ],
-    image: "assets/yograj.jpg",
-  },
-  {
-    id: 16,
-    name: "Giloy Tablets",
-    category: "Medicines",
-    price: 200,
-    description: "Immunity boosting herb in tablet form",
-    benefits: ["Boosts immunity", "Fights infection", "Reduces fever"],
-    image: "assets/giloy.jpg",
-  },
-  {
-    id: 17,
-    name: "Chitrakadi Vati",
-    category: "Medicines",
-    price: 280,
-    description: "Digestive herbal tablet for gas and indigestion",
-    benefits: [
-      "Improves metabolism",
-      "Relieves bloating",
-      "Stimulates appetite",
-    ],
-    image: "assets/chitrakadi.jpg",
-  },
-  {
-    id: 18,
-    name: "Haritaki Tablets",
-    category: "Medicines",
-    price: 250,
-    description: "Mild laxative and detoxifier",
-    benefits: [
-      "Relieves constipation",
-      "Supports gut health",
-      "Detoxifies colon",
-    ],
-    image: "assets/haritki.jpg",
-  },
-  {
-    id: 5,
-    name: "Copper Water Bottle",
-    category: "Bottles & Containers",
-    price: 890,
-    description: "Pure copper bottle for storing Ayurvedic water",
-    benefits: [
-      "Antimicrobial properties",
-      "Improves digestion",
-      "Boosts immunity",
-    ],
-    image: "assets/Copper Water Bottle.jpg",
-  },
-  {
-    id: 8,
-    name: "Glass Storage Jars Set",
-    category: "Bottles & Containers",
-    price: 560,
-    description: "Set of 3 glass jars for storing herbs and medicines",
-    benefits: ["Airtight storage", "Chemical-free", "Easy to clean"],
-    image: "assets/Glass Storage Jars Set.jpg",
-  },
-  {
-    id: 19,
-    name: "Basti Enema Kit",
-    category: "Bottles & Containers",
-    price: 1500,
-    description: "Complete kit for Ayurvedic Basti therapy",
-    benefits: ["Colon detox", "Balances Vata", "Improves elimination"],
-    image: "assets/enema kit.jpg",
-  },
-  {
-    id: 20,
-    name: "Shirodhara Pot Set",
-    category: "Bottles & Containers",
-    price: 2500,
-    description: "Stainless steel or copper pot set for Shirodhara treatment",
-    benefits: ["Promotes calmness", "Relieves anxiety", "Improves focus"],
-    image: "assets/shirodhara pot.jpg",
-  },
-];
+  { id: 3, name: "Triphala Churna", category: "Supplements", price: 280, description: "Traditional herbal powder for digestive health", benefits: ["Digestive support", "Detoxification", "Immunity boost"], image: "assets/triphla.jpg" },
+  { id: 7, name: "Shatavari Powder", category: "Supplements", price: 420, description: "Women's health tonic for hormonal balance", benefits: ["Hormonal balance", "Reproductive health", "Immunity support"], image: "assets/shatavari.jpg" },
 
+  // Additional Oils
+  { id: 1, name: "Brahmi Oil", category: "Herbal Oils", price: 450, description: "Pure Brahmi oil for mental clarity and hair health", benefits: ["Improves memory", "Reduces stress", "Nourishes hair"], image: "assets/bhrami oil.jpg" },
+  { id: 6, name: "Neem Oil", category: "Herbal Oils", price: 380, description: "Pure neem oil for skin conditions and healing", benefits: ["Antibacterial", "Skin healing", "Natural antiseptic"], image: "assets/neem.jpg" },
+  { id: 2, name: "Sesame Oil (Til Oil)", category: "Herbal Oils", price: 320, description: "Cold-pressed sesame oil for Abhyanga massage", benefits: ["Deep tissue nourishment", "Improves circulation", "Anti-aging properties"], image: "assets/sesame.jpg" },
+  { id: 9, name: "Dhanwantharam Thailam", category: "Herbal Oils", price: 480, description: "Herbal oil used in Vata disorders and postnatal care", benefits: ["Relieves muscle pain", "Strengthens nerves", "Reduces inflammation"], image: "assets/dhanwantharam.jpg" },
+  { id: 10, name: "Kottamchukkadi Oil", category: "Herbal Oils", price: 400, description: "Oil used in arthritis and neuromuscular pain treatments", benefits: ["Reduces stiffness", "Improves flexibility", "Relieves pain"], image: "assets/kottamchukkadi.jpg" },
+  { id: 11, name: "Nirgundi Oil", category: "Herbal Oils", price: 360, description: "Anti-inflammatory oil used for joint pain and swelling", benefits: ["Pain relief", "Anti-swelling", "Muscle relaxation"], image: "assets/nirgundi.jpg" },
+  { id: 12, name: "Bala Thailam", category: "Herbal Oils", price: 390, description: "Tonic oil used in nervous system disorders", benefits: ["Strengthens nerves", "Reduces tremors", "Supports Vata balance"], image: "assets/bala.jpg" },
+  { id: 13, name: "Kumkumadi Tailam", category: "Herbal Oils", price: 650, description: "Luxury facial oil for skin brightening and radiance", benefits: ["Brightens skin", "Reduces dark spots", "Anti-aging"], image: "assets/kumkumadi.jpg" },
+
+  // Ayurvedic Tablets  
+  { id: 4, name: "Ashwagandha Capsules", category: "Medicines", price: 650, description: "Premium Ashwagandha extract for stress relief", benefits: ["Stress reduction", "Energy boost", "Better sleep"], image: "assets/ashwagandha.jpg" },
+  { id: 14, name: "Triphala Guggul", category: "Medicines", price: 320, description: "Herbal tablet used for detox and weight management", benefits: ["Improves digestion", "Aids weight loss", "Removes toxins"], image: "assets/triphla guggal.jpg" },
+  { id: 15, name: "Yograj Guggul", category: "Medicines", price: 290, description: "Ayurvedic tablet for joint and muscle health", benefits: ["Relieves arthritis", "Reduces inflammation", "Supports joint function"], image: "assets/yograj.jpg" },
+  { id: 16, name: "Giloy Tablets", category: "Medicines", price: 200, description: "Immunity boosting herb in tablet form", benefits: ["Boosts immunity", "Fights infection", "Reduces fever"], image: "assets/giloy.jpg" },
+  { id: 17, name: "Chitrakadi Vati", category: "Medicines", price: 280, description: "Digestive herbal tablet for gas and indigestion", benefits: ["Improves metabolism", "Relieves bloating", "Stimulates appetite"], image: "assets/chitrakadi.jpg" },
+  { id: 18, name: "Haritaki Tablets", category: "Medicines", price: 250, description: "Mild laxative and detoxifier", benefits: ["Relieves constipation", "Supports gut health", "Detoxifies colon"], image: "assets/haritki.jpg" },
+
+  // Tools
+  { id: 5, name: "Copper Water Bottle", category: "Bottles & Containers", price: 890, description: "Pure copper bottle for storing Ayurvedic water", benefits: ["Antimicrobial properties", "Improves digestion", "Boosts immunity"], image: "assets/Copper Water Bottle.jpg" },
+  { id: 8, name: "Glass Storage Jars Set", category: "Bottles & Containers", price: 560, description: "Set of 3 glass jars for storing herbs and medicines", benefits: ["Airtight storage", "Chemical-free", "Easy to clean"], image: "assets/Glass Storage Jars Set.jpg" },
+  { id: 19, name: "Basti Enema Kit", category: "Bottles & Containers", price: 1500, description: "Complete kit for Ayurvedic Basti therapy", benefits: ["Colon detox", "Balances Vata", "Improves elimination"], image: "assets/enema kit.jpg" },
+  { id: 20, name: "Shirodhara Pot Set", category: "Bottles & Containers", price: 2500, description: "Stainless steel or copper pot set for Shirodhara treatment", benefits: ["Promotes calmness", "Relieves anxiety", "Improves focus"], image: "assets/shirodhara pot.jpg" }
+];
 const productList = document.getElementById("product-list");
 const cartItemCount = document.getElementById("cart-item-count");
 const cartTotal = document.getElementById("cart-total");
@@ -547,3 +364,129 @@ if (appointmentForm) {
     appointmentForm.reset();
   });
 }
+// Toggle between Patient and Admin/Doctor
+const signInForm = document.getElementById('sign-in-form');
+const signUpForm = document.getElementById('sign-up-form');
+const forgotPasswordForm = document.getElementById('forgot-password-form');
+const showSignUpBtn = document.getElementById('show-signup-btn');
+const showSignInBtn = document.getElementById('show-signin-btn');
+const forgotPasswordLink = document.getElementById('forgot-password-link');
+const backToSignInBtn = document.getElementById('back-to-signin');
+const patientBtn = document.getElementById('patient-btn');
+const adminBtn = document.getElementById('admin-btn');
+const signinSubmitBtn = document.getElementById('signin-btn');
+const formTitle = document.getElementById('form-title');
+const formSubtitle = document.getElementById('form-subtitle');
+
+let isPatient = true;
+
+// Initial button and form state
+patientBtn.classList.add('bg-white', 'text-green-600', 'shadow-sm');
+adminBtn.classList.add('text-gray-500');
+
+const toggleForms = (formToShow) => {
+  signInForm.classList.add('hidden');
+  signUpForm.classList.add('hidden');
+  forgotPasswordForm.classList.add('hidden');
+  formToShow.classList.remove('hidden');
+
+  if (formToShow === signInForm) {
+    formTitle.textContent = 'Sign In';
+    formSubtitle.textContent = 'Access your health records and appointments';
+  } else if (formToShow === signUpForm) {
+    formTitle.textContent = 'Create Account';
+    formSubtitle.textContent = 'Join our Panchakarma wellness community';
+  } else if (formToShow === forgotPasswordForm) {
+    formTitle.textContent = 'Forgot Password?';
+    formSubtitle.textContent = 'Enter your email to receive a password reset link.';
+  }
+};
+
+const toggleUserType = (isPatientUser) => {
+  isPatient = isPatientUser;
+  if (isPatient) {
+    patientBtn.classList.remove('text-gray-500');
+    patientBtn.classList.add('bg-white', 'text-green-600', 'shadow-sm');
+    adminBtn.classList.remove('bg-white', 'text-green-600', 'shadow-sm');
+    adminBtn.classList.add('text-gray-500');
+    signinSubmitBtn.textContent = 'Sign in as Patient';
+    document.getElementById('patient-id').parentNode.style.display = 'block';
+  } else {
+    adminBtn.classList.remove('text-gray-500');
+    adminBtn.classList.add('bg-white', 'text-green-600', 'shadow-sm');
+    patientBtn.classList.remove('bg-white', 'text-green-600', 'shadow-sm');
+    patientBtn.classList.add('text-gray-500');
+    signinSubmitBtn.textContent = 'Sign in as Admin';
+    document.getElementById('patient-id').parentNode.style.display = 'none';
+  }
+};
+
+// Event Listeners
+showSignUpBtn.addEventListener('click', () => toggleForms(signUpForm));
+showSignInBtn.addEventListener('click', () => toggleForms(signInForm));
+forgotPasswordLink.addEventListener('click', (event) => {
+  event.preventDefault();
+  toggleForms(forgotPasswordForm);
+});
+backToSignInBtn.addEventListener('click', () => toggleForms(signInForm));
+patientBtn.addEventListener('click', () => toggleUserType(true));
+adminBtn.addEventListener('click', () => toggleUserType(false));
+
+signInForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const email = document.getElementById('signin-email').value;
+  const password = document.getElementById('signin-password').value;
+  const patientId = document.getElementById('patient-id').value;
+
+  // Simulate login
+  if (isPatient && email === 'patient@demo.com' && password === 'password123') {
+    // Check if patient ID matches if provided
+    if (patientId && patientId !== '123') {
+      showCustomAlert("Invalid Patient ID. Please try again.");
+    } else {
+      showCustomAlert('Patient login successful!');
+    }
+  } else if (!isPatient && email === 'admin@demo.com' && password === 'admin123') {
+    showCustomAlert('Admin login successful!');
+  } else {
+    showCustomAlert('Invalid credentials. Please try again.');
+  }
+});
+
+signUpForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const password = document.getElementById('signup-password').value;
+  const confirmPassword = document.getElementById('confirm-password').value;
+
+  if (password !== confirmPassword) {
+    showCustomAlert("Passwords do not match.");
+    return;
+  }
+
+  showCustomAlert("Account created successfully!");
+  // You would typically send this data to a server here.
+  toggleForms(signInForm);
+});
+
+forgotPasswordForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const email = document.getElementById('forgot-email').value;
+  showCustomAlert(`A password reset link has been sent to ${email}.`);
+});
+
+function showCustomAlert(message) {
+  const modal = document.createElement('div');
+  modal.className = 'fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center';
+  modal.innerHTML = `
+                    <div class="bg-white p-6 rounded-lg shadow-xl text-center max-w-sm w-full">
+                        <p class="text-lg font-medium text-gray-800">${message}</p>
+                        <button class="mt-4 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-300">OK</button>
+                    </div>
+                `;
+  document.body.appendChild(modal);
+
+  modal.querySelector('button').addEventListener('click', () => {
+    modal.remove();
+  });
+}
+
