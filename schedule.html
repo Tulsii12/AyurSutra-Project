@@ -2,49 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panchakarma Center - Schedule Appointment</title>
-  <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panchakarma Center - Schedule Appointment</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Navbar -->
-  <header class="navbar">
-    <div class="logo">
-      <span class="logo-icon">P</span>
-      <div class="logo-text">
-        <h2>Panchakarma Center</h2>
-        <p>Ayurvedic Healing</p>
-      </div>
-    </div>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">About Us</a>
-      <a href="#">Shop</a>
-      <a href="#" class="active">Schedule</a>
-      <a href="#">Records</a>
-      <a href="#">Login</a>
-    </nav>
-  </header>
+      <!-- Header -->
+      <header class="bg-green-800 text-white shadow-md">
+        <div class="container mx-auto px-8 py-4 flex flex-col md:flex-row md:justify-center md:gap-x-12 items-center">
+            <div class="flex items-center space-x-8 mb-4 md:mb-0">
+                <div class="bg-green-600 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold">P</div>
+                <div>
+                    <h1 class="text-lg font-bold">Panchakarma Center</h1>
+                    <p class="text-sm text-gray-300">Ayurvedic Healing</p>
+                </div>
+            </div>
+            <nav class="flex-grow">
+                <ul class="flex justify-center md:justify-end space-x-16 font-medium">
+                    <li><a href="#" class="hover:text-green-300">Home</a></li>
+                    <li><a href="#" class="hover:text-green-300">About Us</a></li>
+                    <li><a href="shop.html" class="hover:text-green-300">Shop</a></li>
+                    <li><a href="#" class="text-white bg-green-600 py-2 px-4 rounded-md">Schedule</a></li>
+                    <li><a href="#" class="hover:text-green-300">Records</a></li>
+                    <li><a href="#" class="hover:text-green-300">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
   <!-- Hero -->
-  <section class="hero">
-    <h1>Schedule Appointment</h1>
-    <p>Book your consultation or treatment session</p>
-  </section>
+  <div class="bg-green-600 text-white py-16 mt-0">
+    <div class="container mx-auto text-center px-4">
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-2">Schedule Appointment</h2>
+        <p class="text-lg md:text-xl font-light opacity-90">Book your consultation or treatment session</p>
+    </div>
+</div>
 
   <!-- Select Treatment -->
   <section class="card-section">
-    <h2>Select Panchakarma Treatment</h2>
+    <h1 style="font-weight: bold;">SELECT PANCHAKARMA TREATMENT</h1>
     <div class="treatments">
       <div class="card" onclick="selectTreatment(this)">
-        <img src="images/initialConsult.JPG" alt="Consultation">
+        <img src="assets/images/initialConsult.JPG" alt="Consultation">
         <h3>Initial Consultation <span>₹500</span></h3>
         <p>Comprehensive health assessment and treatment planning</p>
         <small>Duration: 60 minutes</small>
       </div>
       <div class="card" onclick="selectTreatment(this)">
-        <img src="images/Abhyanga.jpg" alt="Treatment 1">
-        <h3>Abhyanga (Full Body Massage) <span>₹2000</span></h3>
+        <img src="assets/images/Abhyanga.jpg" alt="Treatment 1">
+        <h3>Abhyanga (Full Body Massage) <span>₹1500</span></h3>
         <p>Traditional full body oil massage</p>
         <ul class="benefits">
           <li>Improves Circulation</li>
@@ -55,8 +64,8 @@
       </div>
 
       <div class="card" onclick="selectTreatment(this)">
-        <img src="images/Shirodhara.JPG" alt="Treatment 2">
-        <h3>Shirodhara <span>₹3500</span></h3>
+        <img src="assets/images/Shirodhara.JPG" alt="Treatment 2">
+        <h3>Shirodhara <span>₹3000</span></h3>
         <p>Continuous oil pouring on forehead</p>
         <ul class="benefits">
           <li>Reduces Stress</li>
@@ -67,8 +76,8 @@
       </div>
 
       <div class="card" onclick="selectTreatment(this)">
-        <img src="images/Shirovasti.JPG" alt="Treatment 3">
-        <h3>Shirovasti <span>₹3000</span></h3>
+        <img src="assets/images/Shirovasti.JPG" alt="Treatment 3">
+        <h3>Shirovasti <span>₹2500</span></h3>
         <p>Retaining warm oil on head using cap-like structure.</p>
         <ul class="benefits">
           <li>Useful in Headaches</li>
@@ -79,8 +88,8 @@
       </div>
 
       <div class="card" onclick="selectTreatment(this)">
-        <img src="images/Women.JPG" alt="Treatment 4">
-        <h3>Women's Health Treatment <span>₹20000+</span></h3>
+        <img src="assets/images/Women.JPG" alt="Treatment 4">
+        <h3>Women's Health Treatment <span>₹10000+</span></h3>
         <p>Specialized treatments for Women</p>
         <ul class="benefits">
           <li>Menstrual Health</li>
@@ -91,8 +100,8 @@
       </div>
 
       <div class="card" onclick="selectTreatment(this)">
-        <img src="images/Pizhichil.WEBP" alt="Treatment 5">
-        <h3>Pizhichil <span>₹4500</span></h3>
+        <img src="assets/images/Pizhichil.WEBP" alt="Treatment 5">
+        <h3>Pizhichil <span>₹4000</span></h3>
         <p>Pouring warm medicated oil on the whole body with massage.</p>
         <ul class="benefits">
           <li>Good for Arthritis</li>
@@ -103,8 +112,8 @@
       </div>
 
       <div class="card" onclick="selectTreatment(this)">
-        <img src="images/Navarakizhi.WEBP" alt="Treatment 6">
-        <h3>Navarakizhi <span>₹4000</span></h3>
+        <img src="assets/images/Navarakizhi.WEBP" alt="Treatment 6">
+        <h3>Navarakizhi <span>₹3500</span></h3>
         <p>Massage with warm rice boluses cooked in herbal decoction & milk.</p>
         <ul class="benefits">
           <li>Strengthens Muscles</li>
@@ -115,8 +124,8 @@
       </div>
 
       <div class="card" onclick="selectTreatment(this)">
-        <img src="images/PatraPindaSweda.WEBP" alt="Treatment 7">
-        <h3>Patra Pinda Sweda <span>₹3500</span></h3>
+        <img src="assets/images/PatraPindaSweda.WEBP" alt="Treatment 7">
+        <h3>Patra Pinda Sweda <span>₹3000</span></h3>
         <p>Massage with herbal boluses.</p>
         <ul class="benefits">
           <li>Relieves Joint Pain</li>
@@ -127,8 +136,8 @@
       </div>
 
       <div class="card" onclick="selectTreatment(this)">
-        <img src="images/Udwartana.JPG" alt="Treatment 8">
-        <h3>Udwartana <span>₹2500</span></h3>
+        <img src="assets/images/Udwartana.JPG" alt="Treatment 8">
+        <h3>Udwartana <span>₹2000</span></h3>
         <p>Dry powder massage.</p>
         <ul class="benefits">
           <li>Reduces Obesity</li>
@@ -139,8 +148,8 @@
       </div>
 
       <div class="card" onclick="selectTreatment(this)">
-        <img src="images/KatiBasti.JPG" alt="Treatment 9">
-        <h3>Kati Basti <span>₹2000</span></h3>
+        <img src="assets/images/KatiBasti.JPG" alt="Treatment 9">
+        <h3>Kati Basti <span>₹1500</span></h3>
         <p>Retaining warm medicated oil on lower back.</p>
         <ul class="benefits">
           <li>Effective for Back Pain</li>
@@ -150,8 +159,8 @@
       </div>
 
       <div class="card" onclick="selectTreatment(this)">
-        <img src="images/JanuBasti.PNG" alt="Treatment 10">
-        <h3>Janu Basti <span>₹2000</span></h3>
+        <img src="assets/images/JanuBasti.PNG" alt="Treatment 10">
+        <h3>Janu Basti <span>₹1500</span></h3>
         <p>Retaining warm medicated oil on knees.</p>
         <ul class="benefits">
           <li>Relieves Knee Pain</li>
@@ -162,8 +171,8 @@
       </div>
 
       <div class="card" onclick="selectTreatment(this)">
-        <img src="images/HridayaBasti.JPG" alt="Treatment 11">
-        <h3>Hridaya Basti <span>₹2500</span></h3>
+        <img src="assets/images/HridayaBasti.JPG" alt="Treatment 11">
+        <h3>Hridaya Basti <span>₹2000</span></h3>
         <p>Warm oil over heart region.</p>
         <ul class="benefits">
           <li>Supports Heart Health</li>
@@ -174,8 +183,8 @@
       </div>
 
       <div class="card" onclick="selectTreatment(this)">
-        <img src="images/NetraTarpana.JPG" alt="Treatment 12">
-        <h3>Netra Tarpana <span>₹1800</span></h3>
+        <img src="assets/images/NetraTarpana.JPG" alt="Treatment 12">
+        <h3>Netra Tarpana <span>₹1200</span></h3>
         <p>Eye rejuvenation with medicated ghee.</p>
         <ul class="benefits">
           <li>Improves Vision</li>
@@ -186,8 +195,8 @@
       </div>
 
       <div class="card" onclick="selectTreatment(this)">
-        <img src="images/KarnaPurana.JPG" alt="Treatment 13">
-        <h3>Karna Purana <span>₹1500</span></h3>
+        <img src="assets/images/KarnaPurana.JPG" alt="Treatment 13">
+        <h3>Karna Purana <span>₹1000</span></h3>
         <p>Ear therapy with medicated oils.</p>
         <ul class="benefits">
           <li>Helps with Ear Pain</li>
@@ -198,8 +207,8 @@
       </div>
 
       <div class="card" onclick="selectTreatment(this)">
-        <img src="images/Gandusha.JPG" alt="Treatment 14">
-        <h3>Gandusha/Kavala <span>₹1000</span></h3>
+        <img src="assets/images/Gandusha.JPG" alt="Treatment 14">
+        <h3>Gandusha/Kavala <span>₹500</span></h3>
         <p>Oil pulling therapy .</p>
         <ul class="benefits">
           <li>Strengthening Gums</li>
@@ -209,8 +218,8 @@
       </div>
 
       <div class="card" onclick="selectTreatment(this)">
-        <img src="images/Lepam.JPG" alt="Treatment 15">
-        <h3>Lepam <span>₹1800</span></h3>
+        <img src="assets/images/Lepam.JPG" alt="Treatment 15">
+        <h3>Lepam <span>₹1200</span></h3>
         <p>Application of medicated herbal pastes.</p>
         <ul class="benefits">
           <li>Treats Skin Diseases</li>
@@ -293,29 +302,33 @@
   </section>
 
   <!-- Footer -->
-  <footer>
-    <div class="footer-col">
-      <h4>Contact Us</h4>
-      <p>📍 123 Wellness Street, Ayurveda City</p>
-      <p>📞 +91 9876543210</p>
-      <p>✉️ info@panchakarma-center.com</p>
+  <footer class="bg-green-800 text-white py-12">
+    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+            <h5 class="text-lg font-bold mb-4">Contact Us</h5>
+            <p class="flex items-center mb-2"><i class="fas fa-map-marker-alt mr-2"></i> 123 Wellness Street, Ayurveda City</p>
+            <p class="flex items-center mb-2"><i class="fas fa-phone mr-2"></i> +91 98765 43210</p>
+            <p class="flex items-center"><i class="fas fa-envelope mr-2"></i> info@panchakarma-center.com</p>
+        </div>
+        <div>
+            <h5 class="text-lg font-bold mb-4">Quick Links</h5>
+            <ul class="space-y-2">
+                <li><a href="#" class="hover:underline">Treatments</a></li>
+                <li><a href="#" class="hover:underline">Consultation</a></li>
+                <li><a href="#" class="hover:underline">Products</a></li>
+                <li><a href="#" class="hover:underline">Appointment</a></li>
+            </ul>
+        </div>
+        <div>
+            <h5 class="text-lg font-bold mb-4">Operating Hours</h5>
+            <ul class="space-y-2">
+                <li>Monday - Friday: 9:00 AM - 7:00 PM</li>
+                <li>Saturday: 9:00 AM - 5:00 PM</li>
+                <li>Sunday: 10:00 AM - 4:00 PM</li>
+            </ul>
+        </div>
     </div>
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <ul>
-        <li><a href="#">Treatments</a></li>
-        <li><a href="#">Consultation</a></li>
-        <li><a href="#">Products</a></li>
-        <li><a href="#">Appointment</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Operating Hours</h4>
-      <p>Monday - Friday: 9:00 AM - 7:00 PM</p>
-      <p>Saturday: 9:00 AM - 5:00 PM</p>
-      <p>Sunday: 10:00 AM - 4:00 PM</p>
-    </div>
-  </footer>
+</footer>
 
   <script src="script.js"></script>
 </body>
