@@ -265,3 +265,154 @@ body {
     background-color: #136d2d !important;
     color: #fff !important;
 }
+
+.home-h3 {
+  margin-bottom: 20px;
+  font-size: larger;
+}
+
+.home-p {
+  max-width: 700px;
+  margin: auto;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+
+.home-hero-buttons .home-btn {
+  margin: 5px;
+}
+
+/* Buttons */
+.home-btn {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+.home-hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; 
+}
+
+.last-btn {
+  padding: 10px 20px;
+  border: 2px solid white;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 6px;
+  margin-top: 20px; 
+}
+
+.last-btn.home-primary {
+  background: white;
+  color: #046c39;
+}
+
+.last-btn.home-secondary {
+  background: transparent;
+  color: white;
+}
+
+.home-primary {
+  background: white;
+  color: #046c39;
+  border: 2px solid white;
+}
+
+.home-primary:hover {
+  background: #046c39;
+  color: white;
+}
+
+.home-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.home-secondary:hover {
+  background: white;
+  color: #046c39;
+}
+
+/* Treatments Section */
+.home-treatments {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.home-treatments h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.home-treatments p {
+  max-width: 700px;
+  margin: auto;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.home-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.home-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  width: 300px;
+  text-align: left;
+  transition: 0.3s;
+}
+
+.home-card img {
+  width: 200%;
+  height: 230px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.home-card h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.home-card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.home-card h4 {
+  margin-bottom: 8px;
+}
+
+.home-card ul {
+  list-style: none;
+  margin-bottom: 15px;
+}
+
+.home-card ul li {
+  color: #046c39;
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.home-card:hover {
+  transform: translateY(-5px);
+}
+
+.last-p {
+  margin-top: 20px;
+  color: #ffffffd9;
+  font-size: large;
+}
