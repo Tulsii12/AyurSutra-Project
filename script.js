@@ -350,6 +350,25 @@ if (appointmentForm) {
       "Appointment booked successfully! We will contact you within 24 hours to confirm."
     );
 
+    // Persist appointment for calendar view in profile.html
+    try {
+      const therapyTitle = selectedTreatment
+        .querySelector("h3")
+        .textContent.replace(/\s*₹.*$/, "").trim();
+      const appointmentRecord = {
+        id: Date.now(),
+        date: dateInput.value, // ISO yyyy-mm-dd
+        time: selectedTimeSlot.textContent.trim(),
+        therapy: therapyTitle,
+        status: "scheduled",
+      };
+      const existing = JSON.parse(localStorage.getItem("appointments") || "[]");
+      existing.push(appointmentRecord);
+      localStorage.setItem("appointments", JSON.stringify(existing));
+    } catch (e) {
+      console.error("Failed saving appointment", e);
+    }
+
     if (selectedTreatment) {
       selectedTreatment.classList.remove("selected");
     }

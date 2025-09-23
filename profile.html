@@ -1441,6 +1441,29 @@
             }
         ];
 
+        // Merge stored appointments from schedule.html (saved in localStorage)
+        try {
+            const storedAppointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+            storedAppointments.forEach((item) => {
+                const parts = (item.date || '').split('-').map(Number);
+                if (parts.length === 3) {
+                    const jsDate = new Date(parts[0], parts[1] - 1, parts[2]);
+                    appointments.push({
+                        id: item.id || Date.now(),
+                        date: jsDate,
+                        time: item.time || '',
+                        therapy: item.therapy || 'Scheduled Appointment',
+                        therapist: item.therapist || 'AyurSutra Clinic',
+                        status: item.status || 'scheduled',
+                        duration: item.duration || 60,
+                        notes: item.notes || ''
+                    });
+                }
+            });
+        } catch (e) {
+            console.error('Failed to load stored appointments', e);
+        }
+
         // Calendar functionality
         class Calendar {
             constructor() {
