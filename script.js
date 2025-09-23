@@ -352,9 +352,29 @@ if (appointmentForm) {
 
     // Persist appointment for calendar view in profile.html
     try {
-      const therapyTitle = selectedTreatment
+      const therapyTitleRaw = selectedTreatment
         .querySelector("h3")
         .textContent.replace(/\s*₹.*$/, "").trim();
+      const normalizeTherapyName = (name) => {
+        const s = (name || "").toLowerCase();
+        if (s.includes("abhyanga")) return "Abhyanga";
+        if (s.includes("shirodhara")) return "Shirodhara";
+        if (s.includes("shirovasti")) return "Shirovasti";
+        if (s.includes("panchakarma")) return "Panchakarma";
+        if (s.includes("basti")) return "Basti";
+        if (s.includes("navarakizhi")) return "Navarakizhi";
+        if (s.includes("patra") && s.includes("pinda")) return "Patra Pinda Sweda";
+        if (s.includes("udwartana")) return "Udwartana";
+        if (s.includes("pizhichil")) return "Pizhichil";
+        if (s.includes("netra") && s.includes("tarpana")) return "Netra Tarpana";
+        if (s.includes("karna") && s.includes("purana")) return "Karna Purana";
+        if (s.includes("gandusha") || s.includes("kavala")) return "Gandusha/Kavala";
+        if (s.includes("lepam")) return "Lepam";
+        if (s.includes("consult")) return "Initial Consultation";
+        if (s.includes("women")) return "Women's Health Treatment";
+        return name;
+      };
+      const therapyTitle = normalizeTherapyName(therapyTitleRaw);
       const appointmentRecord = {
         id: Date.now(),
         date: dateInput.value, // ISO yyyy-mm-dd
@@ -508,4 +528,3 @@ function showCustomAlert(message) {
     modal.remove();
   });
 }
-
