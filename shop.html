@@ -101,8 +101,8 @@
                 <!-- Summary will be injected here by JavaScript -->
             </div>
 
-            <form id="checkout-form">
-                <h4 class="text-xl font-semibold mb-4">Customer Information</h4>
+            <form id="checkout-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <h4 class="text-xl font-semibold mb-4 md:col-span-2">Customer Information</h4>
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700 font-medium mb-2">Full Name</label>
                     <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required>
@@ -111,11 +111,11 @@
                     <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
                     <input type="email" id="email" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required>
                 </div>
-                <div class="mb-4">
+                <div class="mb-4 md:col-span-2">
                     <label for="address" class="block text-gray-700 font-medium mb-2">Shipping Address</label>
                     <textarea id="address" rows="3" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required></textarea>
                 </div>
-                <div class="flex justify-end space-x-4">
+                <div class="md:col-span-2 flex justify-end">
                     <button type="submit" class="px-6 py-2 bg-green-600 text-white rounded-md font-bold hover:bg-green-700 transition-colors duration-200">Confirm Order</button>
                 </div>
             </form>
