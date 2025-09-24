@@ -152,6 +152,20 @@
     </div>
   </div>
 
+  <div id="chatbot-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; width: 350px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background-color: white; font-family: 'Inter', sans-serif;">
+  <div id="chatbot-header" style="background-color: #16a34a; color: white; padding: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; font-weight: bold; cursor: pointer;">
+    AyurSutra Buddy
+  </div>
+  <div id="chatbot-body" style="height: 400px; overflow-y: auto; padding: 10px; display: none;">
+    <div id="messages" style="display: flex; flex-direction: column; gap: 10px;">
+      </div>
+  </div>
+  <div id="chatbot-input-container" style="padding: 10px; border-top: 1px solid #ccc; display: none;">
+    <input type="text" id="chatInput" placeholder="Type your message..." style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+    <button id="sendBtn" style="width: 100%; margin-top: 5px; padding: 8px; background-color: #16a34a; color: white; border: none; border-radius: 5px; cursor: pointer;">Send</button>
+  </div>
+</div>
+
   <!-- Footer -->
   <footer class="bg-green-800 text-white py-12">
     <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
