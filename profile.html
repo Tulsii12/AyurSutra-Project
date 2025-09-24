@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule Appointment</title>
     <link rel="stylesheet" href="style.css">
@@ -11,252 +10,48 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        .main-container {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 2rem
-        }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem
-        }
-
-        .dashboard-section {
-            background: #fff;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 40px rgba(45, 90, 45, .1);
-            position: relative
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem
-        }
-
-        .section-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: #16a34a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            color: #16a34a;
-            font-weight: 600
-        }
-
-        .calendar-container {
-            background: #f2f7f2;
-            border-radius: 20px;
-            padding: 1rem
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem
-        }
-
-        .calendar-month {
-            font-weight: 700;
-            color: #2d5a2d
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 2px;
-            background: #e8f5e8;
-            border-radius: 15px;
-            overflow: hidden
-        }
-
-        .calendar-day-header {
-            background: #16a34a;
-            color: #fff;
-            padding: .6rem .3rem;
-            text-align: center;
-            font-weight: 600;
-            font-size: .75rem
-        }
-
-        .calendar-day {
-            background: #fff;
-            padding: .5rem .3rem;
-            min-height: 60px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            border-radius: 8px;
-            margin: 1px
-        }
-
-        .calendar-day.other-month {
-            background: #f3f3f3;
-            color: #ccc;
-            opacity: .6
-        }
-
-        .calendar-day.today {
-            background: #e8f5e8;
-            border: 2px solid #16a34a
-        }
-
-        .calendar-day.has-appointment {
-            background: linear-gradient(145deg, #fff8e1 0%, #ffecb3 100%);
-            border-left: 3px solid #ffa726
-        }
-
-        .calendar-day.completed-appointment {
-            background: linear-gradient(145deg, #e8f5e8 0%, #c8e6c9 100%);
-            border-left: 3px solid #16a34a
-        }
-
-        .day-number {
-            font-weight: 700;
-            margin-bottom: .2rem;
-            font-size: .9rem;
-            color: #2d5a2d
-        }
-
-        .appointment-indicator {
-            font-size: 1rem;
-            color: #ffa726;
-            margin-bottom: .2rem
-        }
-
-        .appointment-time {
-            font-size: .6rem;
-            color: #4a7c4a;
-            font-weight: 600;
-            background: rgba(74, 124, 74, .1);
-            padding: .1rem .3rem;
-            border-radius: 8px;
-            border: 1px solid rgba(74, 124, 74, .2)
-        }
-
-        .appointment-details {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #fff;
-            border: 1px solid #e8f5e8;
-            border-radius: 12px;
-            padding: 1rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, .15);
-            z-index: 10;
-            display: none;
-            min-width: 200px
-        }
-
-        .calendar-day:hover .appointment-details {
-            display: block
-        }
-
-        .therapy-grid {
-            display: grid;
-            gap: 1rem
-        }
-
-        .therapy-item {
-            background: #f8f9f8;
-            border-radius: 12px;
-            padding: 1.5rem;
-            border-left: 4px solid #4a7c4a
-        }
-
-        .therapy-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem
-        }
-
-        .therapy-name {
-            font-weight: 600;
-            color: #2d5a2d;
-            font-size: 1.1rem
-        }
-
-        .therapy-status {
-            padding: .3rem .8rem;
-            border-radius: 20px;
-            font-size: .8rem;
-            font-weight: 500
-        }
-
-        .status-active {
-            background: #e8f5e8;
-            color: #2e7d32
-        }
-
-        .status-completed {
-            background: #e3f2fd;
-            color: #1976d2
-        }
-
-        .status-scheduled {
-            background: #fff3e0;
-            color: #f57c00
-        }
-
-        .therapy-progress {
-            margin-bottom: 1rem
-        }
-
-        .progress-bar {
-            background: #e8f5e8;
-            border-radius: 10px;
-            height: 8px;
-            overflow: hidden
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: #16a34a
-        }
-
-        .chart-container {
-            background: #f8f9f8;
-            border-radius: 12px;
-            padding: 1rem;
-            height: 200px;
-            position: relative
-        }
-
-        .symptom-chart {
-            background: #f8f9f8;
-            border-radius: 12px;
-            padding: 1rem;
-            height: 250px
-        }
+      .main-container{max-width:1400px;margin:2rem auto;padding:0 2rem}
+      .dashboard-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem}
+      .dashboard-section{background:#fff;border-radius:20px;padding:2rem;box-shadow:0 10px 40px rgba(45,90,45,.1);position:relative}
+      .section-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+      .section-icon{width:40px;height:40px;border-radius:10px;background:#0a7e3d;display:flex;align-items:center;justify-content:center;color:#fff}
+      .section-title{font-size:1.5rem;color:#0a7e3d;font-weight:600}
+      .calendar-container{background:#f2f7f2;border-radius:20px;padding:1rem}
+      .calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+      .calendar-month{font-weight:700;color:#2d5a2d}
+      .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;background:#e8f5e8;border-radius:15px;overflow:hidden}
+      .calendar-day-header{background:#0a7e3d;color:#fff;padding:.6rem .3rem;text-align:center;font-weight:600;font-size:.75rem}
+      .calendar-day{background:#fff;padding:.5rem .3rem;min-height:60px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;border-radius:8px;margin:1px}
+      .calendar-day.other-month{background:#f3f3f3;color:#ccc;opacity:.6}
+      .calendar-day.today{background:#e8f5e8;border:2px solid #0a7e3d}
+      .calendar-day.has-appointment{background:linear-gradient(145deg,#fff8e1 0%,#ffecb3 100%);border-left:3px solid #ffa726}
+      .calendar-day.completed-appointment{background:linear-gradient(145deg,#e8f5e8 0%,#c8e6c9 100%);border-left:3px solid #0a7e3d}
+      .day-number{font-weight:700;margin-bottom:.2rem;font-size:.9rem;color:#2d5a2d}
+      .appointment-indicator{font-size:1rem;color:#ffa726;margin-bottom:.2rem}
+      .appointment-time{font-size:.6rem;color:#4a7c4a;font-weight:600;background:rgba(74,124,74,.1);padding:.1rem .3rem;border-radius:8px;border:1px solid rgba(74,124,74,.2)}
+      .appointment-details{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:#fff;border:1px solid #e8f5e8;border-radius:12px;padding:1rem;box-shadow:0 8px 32px rgba(0,0,0,.15);z-index:10;display:none;min-width:200px}
+      .calendar-day:hover .appointment-details{display:block}
+      .therapy-grid{display:grid;gap:1rem}
+      .therapy-item{background:#f8f9f8;border-radius:12px;padding:1.5rem;border-left:4px solid #4a7c4a}
+      .therapy-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+      .therapy-name{font-weight:600;color:#2d5a2d;font-size:1.1rem}
+      .therapy-status{padding:.3rem .8rem;border-radius:20px;font-size:.8rem;font-weight:500}
+      .status-active{background:#e8f5e8;color:#2e7d32}
+      .status-completed{background:#e3f2fd;color:#1976d2}
+      .status-scheduled{background:#fff3e0;color:#f57c00}
+      .therapy-progress{margin-bottom:1rem}
+      .progress-bar{background:#e8f5e8;border-radius:10px;height:8px;overflow:hidden}
+      .progress-fill{height:100%;background:#0a7e3d}
+      .chart-container{background:#f8f9f8;border-radius:12px;padding:1rem;height:200px;position:relative}
+      .symptom-chart{background:#f8f9f8;border-radius:12px;padding:1rem;height:250px}
     </style>
 </head>
-
 <body>
     <!-- Header -->
-    <header class="bg-green-800 text-white shadow-md">
+      <header class="bg-green-800 text-white shadow-md">
         <div class="container mx-auto px-8 py-4 flex flex-col md:flex-row md:justify-center md:gap-x-12 items-center">
             <div class="flex items-center space-x-8 mb-4 md:mb-0">
-                <div>
-                    <img src="assets/logo.png" alt="AyurSutra Logo"
-                        class="w-16 h-16 rounded-full border-2 border-white shadow" />
-                </div>
+                <div class="bg-green-600 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold">P</div>
                 <div>
                     <h1 class="text-lg font-bold">AyurSutra</h1>
                     <p class="text-sm text-gray-300">Panchakarma Center</p>
@@ -301,7 +96,7 @@
                     <div class="detail-item">
                         <i class="fas fa-envelope"></i>
                         <span>rajesh.kumar@email.com</span>
-                    </div>
+                </div>
                     <div class="detail-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Delhi, India</span>
@@ -329,15 +124,14 @@
             </div>
 
             <!-- Calendar (top-right) -->
-            <div class="dashboard-section calendar-section"
-                style="grid-column: 2 / 3; max-width: none; margin-left: 0;">
+            <div class="dashboard-section calendar-section" style="grid-column: 2 / 3; max-width: none; margin-left: 0;">
                 <div class="section-header">
                     <div class="section-icon">
                         <i class="fas fa-calendar-alt"></i>
                     </div>
                     <div class="section-title">Appointment Calendar</div>
                 </div>
-
+                
                 <div class="calendar-container">
                     <div class="calendar-header">
                         <button class="calendar-nav-btn" id="prev-month">
@@ -348,7 +142,7 @@
                             <i class="fas fa-chevron-right"></i>
                         </button>
                     </div>
-
+                    
                     <div class="calendar-grid" id="calendar-grid">
                         <!-- Calendar will be populated by JavaScript -->
                     </div>
@@ -360,22 +154,22 @@
                 <div class="section-header">
                     <div class="section-icon">
                         <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <div class="section-title">Vital Signs (Latest)</div>
                 </div>
+                    <div class="section-title">Vital Signs (Latest)</div>
+            </div>
 
                 <div class="vital-cards">
                     <div class="vital-card">
                         <div class="vital-icon">
                             <i class="fas fa-tint"></i>
-                        </div>
+                    </div>
                         <div class="vital-value">142/88</div>
                         <div class="vital-label">Blood Pressure (mmHg)</div>
                         <div class="vital-trend trend-down">
                             <i class="fas fa-arrow-down"></i>
                             <span>↓ 5 points</span>
-                        </div>
-                    </div>
+                </div>
+                </div>
 
                     <div class="vital-card">
                         <div class="vital-icon">
@@ -386,42 +180,42 @@
                         <div class="vital-trend trend-stable">
                             <i class="fas fa-minus"></i>
                             <span>Stable</span>
-                        </div>
-                    </div>
+            </div>
+        </div>
 
                     <div class="vital-card">
                         <div class="vital-icon">
                             <i class="fas fa-weight"></i>
-                        </div>
+                </div>
                         <div class="vital-value">78.5</div>
                         <div class="vital-label">Weight (kg)</div>
                         <div class="vital-trend trend-down">
                             <i class="fas fa-arrow-down"></i>
                             <span>↓ 2.3 kg</span>
-                        </div>
+                </div>
                     </div>
 
                     <div class="vital-card">
                         <div class="vital-icon">
                             <i class="fas fa-chart-line"></i>
-                        </div>
+                </div>
                         <div class="vital-value">26.8</div>
                         <div class="vital-label">BMI <span class="tooltip">ℹ️
-                                <span class="tooltiptext">Body Mass Index - calculated as weight(kg) / height(m)²</span>
-                            </span></div>
+                            <span class="tooltiptext">Body Mass Index - calculated as weight(kg) / height(m)²</span>
+                        </span></div>
                         <div class="vital-trend trend-down">
                             <i class="fas fa-arrow-down"></i>
                             <span>↓ 0.8</span>
-                        </div>
-                    </div>
+                </div>
+                </div>
                 </div>
 
                 <div class="chart-container">
                     <canvas id="weightChart"></canvas>
                 </div>
-            </div>
+                </div>
 
-
+            
 
             <!-- Progress Tracker Section (same row as Vital Signs) -->
             <div class="dashboard-section" style="grid-column: 2 / 3;">
@@ -465,12 +259,11 @@
                 </div>
                 <div class="section-title">Medical History</div>
             </div>
-
+            
             <div class="condition-item">
                 <div class="condition-name">
                     Hypertension <span class="tooltip">ℹ️
-                        <span class="tooltiptext">High blood pressure - a chronic condition requiring ongoing
-                            management</span>
+                        <span class="tooltiptext">High blood pressure - a chronic condition requiring ongoing management</span>
                     </span>
                 </div>
                 <div class="condition-details">Diagnosed: 2019 | On medication: Amlodipine 5mg daily</div>
@@ -489,8 +282,7 @@
 
             <div class="condition-item">
                 <div class="condition-name">Chronic Back Pain</div>
-                <div class="condition-details">L4-L5 disc degeneration | Duration: 3 years | Primary reason for
-                    Ayurvedic treatment</div>
+                <div class="condition-details">L4-L5 disc degeneration | Duration: 3 years | Primary reason for Ayurvedic treatment</div>
                 <div class="severity-badge severity-high">High</div>
             </div>
 
@@ -507,6 +299,84 @@
             </div>
         </div>
 
+        <!-- Add Session Feedback Section -->
+        <div class="dashboard-section feedback-section" style="margin-top:0.8rem;">
+          <div class="section-header">
+            <div class="section-icon"><i class="fas fa-comment-dots"></i></div>
+            <div class="section-title">Session Feedback</div>
+          </div>
+
+          <div class="feedback-form bg-white rounded-lg p-6">
+            <div class="grid gap-4">
+              <!-- Session Date -->
+              <div>
+                <label class="text-green-800 font-medium block mb-2">Session Date:</label>
+                <input type="date" value="2025-09-23" 
+                       class="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+              </div>
+
+              <!-- Overall Rating -->
+              <div>
+                <label class="text-green-800 font-medium block mb-2">Overall Rating:</label>
+                <div class="flex gap-2" id="rating">
+                  <button class="text-2xl text-gray-400 hover:text-yellow-400">★</button>
+                  <button class="text-2xl text-gray-400 hover:text-yellow-400">★</button>
+                  <button class="text-2xl text-gray-400 hover:text-yellow-400">★</button>
+                  <button class="text-2xl text-gray-400 hover:text-yellow-400">★</button>
+                  <button class="text-2xl text-gray-400 hover:text-yellow-400">★</button>
+                </div>
+              </div>
+
+              <!-- Pain Level -->
+              <div>
+                <label class="text-green-800 font-medium block mb-2">Pain Level (1-10):</label>
+                <div class="relative">
+                  <input type="range" min="1" max="10" value="5" 
+                         class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-green-600">
+                  <span class="absolute right-0 -top-6 text-sm text-gray-600">5</span>
+                </div>
+              </div>
+
+              <!-- Sleep Quality -->
+              <div>
+                <label class="text-green-800 font-medium block mb-2">Sleep Quality (1-10):</label>
+                <div class="relative">
+                  <input type="range" min="1" max="10" value="5"
+                         class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-green-600">
+                  <span class="absolute right-0 -top-6 text-sm text-gray-600">5</span>
+                </div>
+              </div>
+
+              <!-- Side Effects -->
+              <div>
+                <label class="text-green-800 font-medium block mb-2">Side Effects:</label>
+                <textarea 
+                  class="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+                  rows="3"
+                  placeholder="Describe any side effects or discomfort..."></textarea>
+              </div>
+
+              <!-- Improvements -->
+              <div>
+                <label class="text-green-800 font-medium block mb-2">Improvements Noticed:</label>
+                <textarea 
+                  class="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+                  rows="3"
+                  placeholder="Describe any improvements or positive changes..."></textarea>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-6">
+              <button onclick="submitFeedback()" 
+                      class="w-full bg-green-700 text-white py-2 px-4 rounded-md hover:bg-green-800 
+                             focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                Submit Feedback
+              </button>
+            </div>
+          </div>
+        </div>
+
         <!-- Action Buttons -->
         <div class="action-buttons">
             <button class="btn btn-outline" onclick="downloadMedicalSummary()">
@@ -515,6 +385,45 @@
             </button>
         </div>
     </main>
+
+    <!-- Feedback Modal -->
+<div id="feedbackModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
+  <div class="bg-white rounded-lg w-full max-w-md mx-4">
+    <div class="p-6">
+      <h3 class="text-lg font-semibold mb-4">Session Feedback</h3>
+      
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-1">Select Session</label>
+        <select class="w-full rounded-md border-gray-300 shadow-sm">
+          <option>Abhyanga Massage - March 18</option>
+          <option>Panchakarma - March 20</option>
+          <option>Shirodhara - March 22</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-1">Rating</label>
+        <div class="flex gap-2">
+          <i class="far fa-star text-2xl cursor-pointer hover:text-yellow-400"></i>
+          <i class="far fa-star text-2xl cursor-pointer hover:text-yellow-400"></i>
+          <i class="far fa-star text-2xl cursor-pointer hover:text-yellow-400"></i>
+          <i class="far fa-star text-2xl cursor-pointer hover:text-yellow-400"></i>
+          <i class="far fa-star text-2xl cursor-pointer hover:text-yellow-400"></i>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-1">Comments</label>
+        <textarea class="w-full rounded-md border-gray-300 shadow-sm" rows="3" placeholder="Share your experience..."></textarea>
+      </div>
+
+      <div class="flex justify-end gap-3">
+        <button onclick="hideFeedbackModal()" class="px-4 py-2 text-sm text-gray-600 hover:text-gray-800">Cancel</button>
+        <button onclick="submitFeedback()" class="px-4 py-2 text-sm bg-green-700 text-white rounded-md hover:bg-green-800">Submit Feedback</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <script>
         // Sample data for charts
@@ -733,11 +642,11 @@
             renderCalendar() {
                 const calendarGrid = document.getElementById('calendar-grid');
                 const currentMonth = document.getElementById('current-month');
-
+                
                 // Update month display
-                currentMonth.textContent = this.currentDate.toLocaleDateString('en-US', {
-                    month: 'long',
-                    year: 'numeric'
+                currentMonth.textContent = this.currentDate.toLocaleDateString('en-US', { 
+                    month: 'long', 
+                    year: 'numeric' 
                 });
 
                 // expose current month for therapy plan sync
@@ -775,24 +684,24 @@
                 for (let day = 1; day <= daysInMonth; day++) {
                     const dayElement = document.createElement('div');
                     dayElement.className = 'calendar-day';
-
+                    
                     const dayDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), day);
                     const today = new Date();
-
+                    
                     // Check if it's today
                     if (dayDate.toDateString() === today.toDateString()) {
                         dayElement.classList.add('today');
                     }
 
                     // Check for appointments on this day
-                    const dayAppointments = appointments.filter(appointment =>
+                    const dayAppointments = appointments.filter(appointment => 
                         appointment.date.toDateString() === dayDate.toDateString()
                     );
 
                     if (dayAppointments.length > 0) {
                         const hasCompleted = dayAppointments.some(appointment => appointment.status === 'completed');
                         const hasScheduled = dayAppointments.some(appointment => appointment.status === 'scheduled');
-
+                        
                         if (hasCompleted) {
                             dayElement.classList.add('completed-appointment');
                         } else if (hasScheduled) {
@@ -802,7 +711,7 @@
                         // Add appointment details
                         const appointmentDetails = document.createElement('div');
                         appointmentDetails.className = 'appointment-details';
-
+                        
                         dayAppointments.forEach(appointment => {
                             const appointmentDiv = document.createElement('div');
                             appointmentDiv.innerHTML = `
@@ -813,7 +722,7 @@
                             `;
                             appointmentDetails.appendChild(appointmentDiv);
                         });
-
+                        
                         dayElement.appendChild(appointmentDetails);
                     }
 
@@ -906,6 +815,7 @@
                 data: [7, 6.5, 6, 5.5, 5, 4.2],
                 borderColor: '#e74c3c',
                 backgroundColor: 'rgba(231, 76, 60, 0.1)',
+
                 tension: 0.4,
                 fill: true
             }, {
@@ -1000,10 +910,10 @@
         function downloadMedicalSummary() {
             // Show loading animation
             showNotification('Generating medical summary...', 'info');
-
+            
             // Create a more detailed medical summary
             const medicalSummary = generateMedicalSummary();
-
+            
             // Simulate processing time with progress
             let progress = 0;
             const progressInterval = setInterval(() => {
@@ -1012,19 +922,19 @@
                     showNotification(`Generating medical summary... ${progress}%`, 'info');
                 }
             }, 300);
-
+            
             setTimeout(() => {
                 clearInterval(progressInterval);
-
+                
                 // Create and download the summary
                 const element = document.createElement('a');
-                const file = new Blob([medicalSummary], { type: 'text/plain' });
+                const file = new Blob([medicalSummary], {type: 'text/plain'});
                 element.href = URL.createObjectURL(file);
                 element.download = `Medical_Summary_${new Date().toISOString().split('T')[0]}.txt`;
                 document.body.appendChild(element);
                 element.click();
                 document.body.removeChild(element);
-
+                
                 showNotification('Medical summary downloaded successfully!', 'success');
             }, 2000);
         }
@@ -1132,11 +1042,11 @@ For any questions, please contact your healthcare provider.
         }
 
         function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.className = `notification-toast notification-${type}`;
-            notification.textContent = message;
-
-            notification.style.cssText = `
+                const notification = document.createElement('div');
+                notification.className = `notification-toast notification-${type}`;
+                notification.textContent = message;
+                
+                notification.style.cssText = `
                     position: fixed;
                     top: 20px;
                     right: 20px;
@@ -1149,26 +1059,74 @@ For any questions, please contact your healthcare provider.
                     animation: slideIn 0.3s ease;
                 `;
 
-            document.body.appendChild(notification);
+                document.body.appendChild(notification);
 
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease';
                 setTimeout(() => {
-                    if (document.body.contains(notification)) {
-                        document.body.removeChild(notification);
-                    }
-                }, 300);
-            }, 3000);
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => {
+                        if (document.body.contains(notification)) {
+                            document.body.removeChild(notification);
+                        }
+                    }, 300);
+                }, 3000);
         }
 
+        // Feedback modal functions
+        function showFeedbackModal() {
+  document.getElementById('feedbackModal').style.display = 'flex';
+}
+
+function hideFeedbackModal() {
+  document.getElementById('feedbackModal').style.display = 'none';
+}
+
+function submitFeedback() {
+  const feedback = {
+    date: document.querySelector('input[type="date"]').value,
+    rating: document.querySelectorAll('#rating button.text-yellow-400').length,
+    painLevel: document.querySelector('input[type="range"]:nth-of-type(1)').value,
+    sleepQuality: document.querySelector('input[type="range"]:nth-of-type(2)').value,
+    sideEffects: document.querySelector('textarea:nth-of-type(1)').value,
+    improvements: document.querySelector('textarea:nth-of-type(2)').value
+  };
+
+  // Show success notification
+  showNotification('Feedback submitted successfully', 'success');
+
+  // Reset form
+  document.querySelectorAll('#rating button').forEach(btn => {
+    btn.classList.remove('text-yellow-400');
+    btn.classList.add('text-gray-400');
+  });
+  document.querySelectorAll('input[type="range"]').forEach(range => range.value = 5);
+  document.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
+}
+
+// Star rating functionality
+document.querySelectorAll('#rating button').forEach((star, index) => {
+  star.addEventListener('click', () => {
+    document.querySelectorAll('#rating button').forEach((s, i) => {
+      s.classList.toggle('text-yellow-400', i <= index);
+      s.classList.toggle('text-gray-400', i > index);
+    });
+  });
+});
+
+// Range sliders value display
+document.querySelectorAll('input[type="range"]').forEach(range => {
+  range.addEventListener('input', (e) => {
+    e.target.nextElementSibling.textContent = e.target.value;
+  });
+});
+
         // Initialize the page
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             initializeCharts();
             new Calendar();
             // initial render uses current month set by calendar
             window.renderTherapyPlan = renderTherapyPlan;
             renderTherapyPlan();
-
+            
             // Add animation delays to sections
             const sections = document.querySelectorAll('.dashboard-section');
             sections.forEach((section, index) => {
@@ -1192,35 +1150,33 @@ For any questions, please contact your healthcare provider.
     </script>
 
     <!-- Footer -->
-    <footer class="bg-green-800 text-white py-12">
-        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-                <h5 class="text-lg font-bold mb-4">Contact Us</h5>
-                <p class="flex items-center mb-2"><i class="fas fa-map-marker-alt mr-2"></i> 123 Wellness Street,
-                    Ayurveda City</p>
-                <p class="flex items-center mb-2"><i class="fas fa-phone mr-2"></i> +91 98765 4xxxx</p>
-                <p class="flex items-center"><i class="fas fa-envelope mr-2"></i> info@panchakarma-center.com</p>
-            </div>
-            <div>
-                <h5 class="text-lg font-bold mb-4">Quick Links</h5>
-                <ul class="space-y-2">
-                    <li><a href="#" class="hover:underline">Treatments</a></li>
-                    <li><a href="#" class="hover:underline">Consultation</a></li>
-                    <li><a href="#" class="hover:underline">Products</a></li>
-                    <li><a href="#" class="hover:underline">Appointment</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="text-lg font-bold mb-4">Operating Hours</h5>
-                <ul class="space-y-2">
-                    <li>Monday - Friday: 9:00 AM - 7:00 PM</li>
-                    <li>Saturday: 9:00 AM - 5:00 PM</li>
-                    <li>Sunday: 10:00 AM - 4:00 PM</li>
-                </ul>
-            </div>
+  <footer class="bg-green-800 text-white py-12">
+    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+            <h5 class="text-lg font-bold mb-4">Contact Us</h5>
+            <p class="flex items-center mb-2"><i class="fas fa-map-marker-alt mr-2"></i> 123 Wellness Street, Ayurveda City</p>
+            <p class="flex items-center mb-2"><i class="fas fa-phone mr-2"></i> +91 98765 4xxxx</p>
+            <p class="flex items-center"><i class="fas fa-envelope mr-2"></i> info@panchakarma-center.com</p>
         </div>
-    </footer>
+        <div>
+            <h5 class="text-lg font-bold mb-4">Quick Links</h5>
+            <ul class="space-y-2">
+                <li><a href="#" class="hover:underline">Treatments</a></li>
+                <li><a href="#" class="hover:underline">Consultation</a></li>
+                <li><a href="#" class="hover:underline">Products</a></li>
+                <li><a href="#" class="hover:underline">Appointment</a></li>
+            </ul>
+        </div>
+        <div>
+            <h5 class="text-lg font-bold mb-4">Operating Hours</h5>
+            <ul class="space-y-2">
+                <li>Monday - Friday: 9:00 AM - 7:00 PM</li>
+                <li>Saturday: 9:00 AM - 5:00 PM</li>
+                <li>Sunday: 10:00 AM - 4:00 PM</li>
+            </ul>
+        </div>
+    </div>
+</footer>
 
 </body>
-
 </html>
